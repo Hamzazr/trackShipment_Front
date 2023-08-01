@@ -1,0 +1,40 @@
+<button nz-button nzType="primary">Ajouter</button>
+<nz-table #nestedTable [nzData]="dataSource.items" [nzPageSize]="10">
+    <thead>
+      <tr> 
+        <th></th>
+        <th>Id</th>
+        <th>Numero</th>
+        <th>Statut</th>
+        <th>Transporteur</th>
+        <th>Client</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-row [ngForOf]="dataSource.items">
+        <tr>
+          <td nz-expand [(nzExpand)]="row.expand"></td>
+          <td>{{ row.id }}</td>
+          <td>{{ row.numero }}</td>
+          <td style="width: 200px;">
+            <nz-descriptions>
+                <nz-descriptions-item nzTitle="{{ row.statut }}" >
+                  <nz-badge nzStatus="processing" ></nz-badge>
+                </nz-descriptions-item> 
+            </nz-descriptions>
+          </td>
+          <td>{{ row.transporteur }}</td>
+          <td>{{ row.client }}</td>
+          <td (click)="navigateToProfile(row.id)">
+            <a>Publish</a>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </nz-table>
+  <nz-pagination 
+      [nzTotal]="dataSource.meta.totalItems"
+      [nzPageSize]="dataSource.meta.itemsPerPage"
+      [nzPageSizeOptions]="[5, 10, 25, 100]"
+      (nzPageIndexChange)="onPaginateChange($event)"
+  ></nz-pagination>

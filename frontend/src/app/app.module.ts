@@ -3,42 +3,120 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component'
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+import { RegisterComponent } from './components/register/register.component';
 import { UsersComponent } from './components/users/users.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JWT_OPTIONS, JwtHelperService } from "@auth0/angular-jwt";
+import { CommonModule, registerLocaleData } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { MatCardModule } from '@angular/material/card';
+import { ColisComponent } from './components/colis/colis.component';
+
+
+
+
+
+import { NZ_ICONS } from 'ng-zorro-antd/icon';
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
+import { IconDefinition } from '@ant-design/icons-angular';
+import * as AllIcons from '@ant-design/icons-angular/icons';
+//import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzTableModule } from 'ng-zorro-antd/table';
+
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { RouterModule } from '@angular/router';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { ColisProfileComponent } from './components/colis-profile/colis-profile.component';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+
+
+
+
+registerLocaleData(en);
+
+const antDesignIcons = AllIcons as {
+  [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
+
 
 // import { DragDropModule } from '@angular/cdk/drag-drop';
 // import { ScrollingModule } from '@angular/cdk/scrolling';
-//import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
+// import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 @NgModule({
-    declarations: [
-       AppComponent,
-       UsersComponent,
-       ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        LoginComponent,
-        RegisterComponent
-   
+  declarations: [
+    AppComponent, LoginComponent, RegisterComponent, UsersComponent, UserProfileComponent, ColisComponent, HomePageComponent, ColisProfileComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSelectModule,
+    DragDropModule,
+    ScrollingModule,
+    FormsModule,
         
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+    MatCardModule,
+    MatFormFieldModule,
+    
+    NzButtonModule,
+    NzLayoutModule,
+    NzBreadCrumbModule,
+    NzFormModule,
+    NzInputModule,
+    NzToolTipModule,
+    NzTableModule,
+    RouterModule,
+    NzPaginationModule,
+    NzCardModule,
+    NzAvatarModule,
+    NzSkeletonModule,
+    NzStepsModule,
+    NzDividerModule,
+    NzStatisticModule,
+    NzProgressModule,
+    NzDescriptionsModule,
+    NzBadgeModule,
+    NzIconModule
+
+
+   
+  ],
+  providers: [JwtHelperService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, { provide: NZ_ICONS, useValue: icons }, { provide: NZ_I18N, useValue: en_US }],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

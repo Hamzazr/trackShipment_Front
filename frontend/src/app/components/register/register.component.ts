@@ -1,28 +1,24 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule} from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { AuthentificationService } from 'src/app/services/authentification-Service/authentification.service';
+import { map } from 'rxjs';
+import { AuthService } from 'src/app/services/authentification-Service/auth.service';
 
 @Component({
-    selector: 'app-register',
-    imports: [CommonModule, ReactiveFormsModule],
-    templateUrl: './register.component.html',
-    styleUrls: ['./register.component.scss'],
-    standalone: true
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit{
 
-  registerForm: FormGroup;
 
+  registerForm: FormGroup;
+  
   constructor(
-    private authService: AuthentificationService,
+    private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router
   ) { }
-
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -52,5 +48,4 @@ export class RegisterComponent implements OnInit{
       map((_user) => this.router.navigate(['login']))
     ).subscribe()
   }
-
 }

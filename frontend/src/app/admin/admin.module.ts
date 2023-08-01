@@ -6,10 +6,12 @@ import { OverviewComponent } from './components/overview/overview.component';
 
 
 @NgModule({
-    imports: [
-        CommonModule,
-        AdminRoutingModule,
-        OverviewComponent
-    ]
+  declarations: [
+    OverviewComponent
+  ],
+  imports: [
+    CommonModule,
+    AdminRoutingModule
+  ]
 })
 export class AdminModule { }

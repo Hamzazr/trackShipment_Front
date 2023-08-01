@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, tap } from 'rxjs';
-import { UserData, UserService } from 'src/app/services/user-Service/user.service';
-
+import { ColisData, ColisService } from 'src/app/services/colis-Service/colis.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-colis',
+  templateUrl: './colis.component.html',
+  styleUrls: ['./colis.component.scss']
 })
-export class UsersComponent implements OnInit{
-  dataSource: UserData = {
+export class ColisComponent implements OnInit{
+
+ 
+  dataSource: ColisData = {
     items: [],
     meta: {
       totalItems: 0,
@@ -26,34 +27,31 @@ export class UsersComponent implements OnInit{
       next: '',
       last: ''
     }
-  };
-
+  }; 
+ 
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['id', 'first_name', 'last_name', 'adresse', 'ville', 'email'];
+  displayedColumns: string[] = ['id', 'numero', 'statut', 'transporteur', 'client'];
 
-  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private colisService: ColisService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
-  
   ngOnInit(): void {
     this.initDataSource();
   }
-
+  
   initDataSource() {
-    this.userService.findAll(1, 10).pipe(
-      tap(users => console.log(users)),
-      map((userData: UserData) => this.dataSource = userData)
+    this.colisService.findAll(1, 10).pipe(
+      tap(colis => console.log(colis)),
+      map((colisData: ColisData) => this.dataSource = colisData)
     ).subscribe(); 
   }
 
   onPaginateChange(event: number) {
-    // let page = event.pageIndex;
-    // let size = event.pageSize;
     let page = event;
     let size = this.dataSource.meta.itemsPerPage;
 
       //page = page +1;
-      this.userService.findAll(page, size).pipe(
-          map((userData: UserData) => this.dataSource = userData)
+      this.colisService.findAll(page, size).pipe(
+          map((userData: ColisData) => this.dataSource = userData)
       ).subscribe();
   
   }
@@ -62,4 +60,6 @@ export class UsersComponent implements OnInit{
     this.router.navigate(['./' + id], {relativeTo: this.activatedRoute});
   }
 
+  
+  
 }
