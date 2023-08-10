@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, tap } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { ColisData, ColisService } from 'src/app/services/colis-Service/colis.service';
+import { ColisPageable } from '../models/colis.interface';
 
 @Component({
   selector: 'app-colis',
@@ -30,20 +31,28 @@ export class ColisComponent implements OnInit{
   }; 
  
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['id', 'numero', 'statut', 'transporteur', 'client'];
+  displayedColumns: string[] = ['id', 'numero', 'statut', 'transporteur', 'client', 'description', 'poids', 'emplacement'];
 
   constructor(private colisService: ColisService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initDataSource();
   }
-  
+
   initDataSource() {
     this.colisService.findAll(1, 10).pipe(
       tap(colis => console.log(colis)),
-      map((colisData: ColisData) => this.dataSource = colisData)
-    ).subscribe(); 
+    ).subscribe((colisData: ColisData) => {
+      this.dataSource = colisData;
+    });
   }
+  
+  // initDataSource() {
+  //   this.colisService.findAll(1, 10).pipe(
+  //     tap(colis => console.log(colis)),
+  //     map((colisData: ColisData) => this.dataSource = colisData)
+  //   ).subscribe(); 
+  // }
 
   onPaginateChange(event: number) {
     let page = event;
@@ -51,15 +60,27 @@ export class ColisComponent implements OnInit{
 
       //page = page +1;
       this.colisService.findAll(page, size).pipe(
-          map((userData: ColisData) => this.dataSource = userData)
+          map((colisData: ColisData) => this.dataSource = colisData)
       ).subscribe();
   
-  }
+  } 
 
   navigateToProfile( id: number ) {
     this.router.navigate(['./' + id], {relativeTo: this.activatedRoute});
   }
 
+//   dataSource: Observable<ColisPageable> = this.colisService.indexAll(1, 10);
+
+//   ngOnInit(): void {
+    
+// }
+
+//   onPaginateChange(event: PageEvent) {
+    
+  
+//   } 
+
+  
   
   
 }

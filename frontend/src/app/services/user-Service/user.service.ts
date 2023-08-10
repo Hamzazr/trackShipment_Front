@@ -23,7 +23,7 @@ export interface UserData {
 
 @Injectable({
   providedIn: 'root'
-})
+}) 
 export class UserService {
 
   constructor(private http: HttpClient) { }

@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit{
     items: [],
     meta: {
       totalItems: 0,
-      itemCount: 0,
+      itemCount: 0, 
       itemsPerPage: 0,
       totalPages: 0,
       currentPage: 0

@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
+import { ColisPageable } from 'src/app/components/models/colis.interface';
 
 export interface ColisData {
   items: readonly any[],
@@ -35,5 +36,14 @@ export class ColisService {
       map((colisData: Object) => colisData as ColisData),
       catchError(err => throwError(err))
     )
+  }
+
+  indexAll(page: number, size: number): Observable<ColisPageable> {
+    let params = new HttpParams();
+
+    params = params.append('page', String(page));
+    params = params.append('size', String(size));
+
+    return this.http.get<ColisPageable>('/api/colis', {params});
   }
 }

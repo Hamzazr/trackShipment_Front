@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs';
+import { User } from 'src/app/components/models/user.interface';
 
 
 export interface LoginForm {
@@ -9,22 +10,7 @@ export interface LoginForm {
   password: string;
 }
 
-export const JWT_NAME = 'Token_H';
-
-export interface User {
-    first_name: string;
-
-    last_name: string;
-
-    adresse: string;
-
-    ville: string;
-
-    email: string;
-
-    password: string;
-
-}
+export const JWT_NAME = 'JWT_SECRET';
 
 @Injectable({
   providedIn: 'root'

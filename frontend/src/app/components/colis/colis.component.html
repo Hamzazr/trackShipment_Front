@@ -1,4 +1,5 @@
 <button nz-button nzType="primary">Ajouter</button>
+
 <nz-table #nestedTable [nzData]="dataSource.items" [nzPageSize]="10">
     <thead>
       <tr> 
@@ -6,6 +7,9 @@
         <th>Id</th>
         <th>Numero</th>
         <th>Statut</th>
+        <th>Discription</th>
+        <th>Poid</th>
+        <th>emplacement</th> 
         <th>Transporteur</th>
         <th>Client</th> 
       </tr>
@@ -23,8 +27,12 @@
                 </nz-descriptions-item> 
             </nz-descriptions>
           </td>
+          <td>{{ row.description }}</td>
+          <td>{{ row.poids }}</td>
+          <td>{{ row.emplacement }}</td>
           <td>{{ row.transporteur }}</td>
-          <td>{{ row.client }}</td>
+          <td>{{ row.client.last_name }}</td>
+          
           <td (click)="navigateToProfile(row.id)">
             <a>Publish</a>
           </td>
@@ -33,6 +41,7 @@
     </tbody>
   </nz-table>
   <nz-pagination 
+      *ngIf="dataSource.meta"
       [nzTotal]="dataSource.meta.totalItems"
       [nzPageSize]="dataSource.meta.itemsPerPage"
       [nzPageSizeOptions]="[5, 10, 25, 100]"
