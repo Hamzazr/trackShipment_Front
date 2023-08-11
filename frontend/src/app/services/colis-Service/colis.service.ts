@@ -1,7 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
-import { ColisPageable } from 'src/app/components/models/colis.interface';
+import { Colis, ColisPageable } from 'src/app/components/models/colis.interface';
+
+export const JWT_NAME = 'JWT_SECRET';
 
 export interface ColisData {
   items: readonly any[],
@@ -19,6 +21,7 @@ export interface ColisData {
     last: string;
   }
 }
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,5 +48,23 @@ export class ColisService {
     params = params.append('size', String(size));
 
     return this.http.get<ColisPageable>('/api/colis', {params});
+  }
+
+  updateOne(colis : Colis):Observable<Colis>{
+    return this.http.put('api/colis/'+ colis.id, colis)
+  }
+
+  post(colis: Colis): Observable<Colis> {
+    const token = localStorage.getItem(JWT_NAME);
+
+    if (!token) {
+      throw new Error('JWT token not found.');
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}` // Use the actual JWT token
+    });
+    
+    return this.http.post<Colis>('/api/colis', colis, {headers});
   }
 }

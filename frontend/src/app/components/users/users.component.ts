@@ -26,7 +26,7 @@ export class UsersComponent implements OnInit{
       next: '',
       last: ''
     }
-  };
+  }; 
 
   pageEvent: PageEvent;
   displayedColumns: string[] = ['id', 'first_name', 'last_name', 'adresse', 'ville', 'email'];

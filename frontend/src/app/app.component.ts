@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { AuthService } from './services/authentification-Service/auth.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ export class AppComponent{
   //showDashboard: boolean = true; 
   title = 'frontend';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
   
   // ngOnInit() {
   //   this.router.events.subscribe(event => {
@@ -21,7 +22,13 @@ export class AppComponent{
   //     }
   //   });
   // }
+  navigateTo(value : any) {
+    this.router.navigate(['../', value]);
+  }
   
+  logout() {
+    this.authService.logout();
+  }
 
   isCollapsed = false;
 

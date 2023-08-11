@@ -3,7 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map, tap } from 'rxjs';
 import { ColisData, ColisService } from 'src/app/services/colis-Service/colis.service';
-import { ColisPageable } from '../models/colis.interface';
+import { Colis } from '../models/colis.interface';
 
 @Component({
   selector: 'app-colis',
@@ -69,18 +69,28 @@ export class ColisComponent implements OnInit{
     this.router.navigate(['./' + id], {relativeTo: this.activatedRoute});
   }
 
-//   dataSource: Observable<ColisPageable> = this.colisService.indexAll(1, 10);
+  btnClick(){
+    this.router.navigateByUrl('createColis');
+  }
 
-//   ngOnInit(): void {
-    
-// }
+  toggleEdit(row: any) {
+    row.editing = !row.editing;
+  }
 
-//   onPaginateChange(event: PageEvent) {
-    
-  
-//   } 
-
-  
+  updateColis(row: any) {
+    // Implement your update logic here using the service
+    // You might want to disable editing mode after updating
+    this.colisService.updateOne(row).subscribe(
+      (updatedRow: any) => {
+        console.log('Colis updated:', updatedRow);
+        row.editing = false; // Disable editing mode
+        row.numero = updatedRow.numero;
+      },
+      error => {
+        console.error('Error updating colis:', error);
+      }
+    );
+  }
   
   
 }

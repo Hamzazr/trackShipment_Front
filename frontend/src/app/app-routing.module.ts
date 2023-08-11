@@ -7,6 +7,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { ColisComponent } from './components/colis/colis.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ColisProfileComponent } from './components/colis-profile/colis-profile.component';
+import { AjoutColisComponent } from './components/ajout-colis/ajout-colis.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { 
@@ -19,7 +21,9 @@ const routes: Routes = [
   },
   {
     path: 'home-page',
-    component: HomePageComponent
+    component: HomePageComponent,
+    canActivate: [authGuard]
+
   },
   {
     path: 'register',
@@ -30,14 +34,22 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: UsersComponent
+        component: UsersComponent,
+        canActivate: [authGuard]
       },
       {
         path: ':id',
-        component: UserProfileComponent
+        component: UserProfileComponent,
+        canActivate: [authGuard]
       },
+    
     ]
 
+  },
+  {
+    path: 'createColis',
+    component: AjoutColisComponent,
+    canActivate: [authGuard]
   },
   
   {
@@ -45,12 +57,15 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ColisComponent
+        component: ColisComponent,
+        canActivate: [authGuard]
       },
       {
         path: ':id',
-        component: ColisProfileComponent
+        component: ColisProfileComponent,
+        canActivate: [authGuard]
       },
+      
     ]
     
   },

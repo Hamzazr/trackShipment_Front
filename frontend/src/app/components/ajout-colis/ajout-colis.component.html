@@ -1,0 +1,69 @@
+<div id="cadreR" class="border-b border-gray-900/10 pb-12">
+    <h1 class="text-base font-semibold leading-7 text-gray-900" style="text-align: center; margin-top: 30px; margin-bottom: -15px;">Ajouter Colis</h1>
+  
+    <form nz-form [formGroup]="ajoutform" class="space-y-6">
+      <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="numero">Numero </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Numero!">
+            <input nz-input formControlName="numero" id="numero" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="statut" nzRequired>Statut </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your Statut!">
+            <input
+              nz-input
+              type="text"
+              id="statut"
+              formControlName="statut"
+              
+            />
+          </nz-form-control>  
+        </nz-form-item>
+      
+        <nz-form-item>
+          <nz-form-label
+            [nzSm]="6"
+            [nzXs]="24"
+            nzFor="adresse"
+            nzRequired
+            nzTooltipTitle="What do you want other to call you"
+          >
+            <span>Description: </span>
+          </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your description!">
+            <input nz-input id="description" formControlName="description" />
+          </nz-form-control>
+        </nz-form-item>
+        
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="poids" nzRequired>Poids </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input poids!">
+            <input nz-input id="ville" formControlName="poids" placeholder="poids" />
+          </nz-form-control>
+        </nz-form-item>
+  
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="emplacement" nzRequired>Emplacement </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input emplacement!">
+            <input nz-input id="emplacement" formControlName="emplacement" placeholder="emplacement" />
+          </nz-form-control>
+        </nz-form-item>
+  
+        <!-- <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="transporteur" nzRequired>Transporteur </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input transporteur!">
+            <input nz-input id="transporteur" formControlName="transporteur" placeholder="transporteur" />
+          </nz-form-control>
+        </nz-form-item> -->
+        
+        
+        <nz-form-item nz-row class="register-area">
+          <nz-form-control [nzSpan]="14" [nzOffset]="6">
+            <button nz-button nzType="primary" type="submit" [disabled]="!ajoutform.valid" (click)="post()">Create</button>
+          </nz-form-control>
+        </nz-form-item>
+    
+  
+  </form>
+  </div> 

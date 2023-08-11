@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UsersComponent } from './components/users/users.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JWT_OPTIONS, JwtHelperService } from "@auth0/angular-jwt";
 import { CommonModule, registerLocaleData } from '@angular/common';
@@ -57,6 +57,8 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { AjoutColisComponent } from './components/ajout-colis/ajout-colis.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 
 
@@ -74,7 +76,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
 // import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, RegisterComponent, UsersComponent, UserProfileComponent, ColisComponent, HomePageComponent, ColisProfileComponent
+    AppComponent, LoginComponent, RegisterComponent, UsersComponent, UserProfileComponent, ColisComponent, HomePageComponent, ColisProfileComponent, AjoutColisComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +118,15 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
 
    
   ],
-  providers: [JwtHelperService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, { provide: NZ_ICONS, useValue: icons }, { provide: NZ_I18N, useValue: en_US }],
+  providers: [JwtHelperService, 
+              { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, 
+              { 
+                provide:HTTP_INTERCEPTORS,
+                useClass: JwtInterceptor,
+                multi: true
+              },
+              { provide: NZ_ICONS, useValue: icons }, 
+              { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
