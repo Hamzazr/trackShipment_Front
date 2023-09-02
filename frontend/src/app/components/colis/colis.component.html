@@ -1,5 +1,4 @@
 <button nz-button nzType="primary" type="button" (click)="btnClick()">Ajouter</button>
-
 <nz-table #nestedTable [nzData]="dataSource.items" [nzPageSize]="10">
     <thead>
       <tr> 
@@ -21,7 +20,14 @@
         <tr>
           <td nz-expand [(nzExpand)]="row.expand"></td>
           <td>{{ row.id }}</td>
-          <td><input [(ngModel)]="row.numero" [disabled]="!row.editing" /></td>
+          <!-- <td><input [(ngModel)]="row.numero" [disabled]="!row.editing" /></td> -->
+          <!-- <td>
+            <div class="editable-cell" [hidden]="editId === row.id" (click)="startEdit(row.id)">
+              {{ row.numero }}
+            </div>
+            <input [hidden]="editId !== row.id" type="text" nz-input [(ngModel)]="row.numero" (blur)="stopEdit()" />
+          </td> -->
+          <td> {{ row.numero }} </td>
           <td style="width: 200px;">
             <nz-descriptions>
                 <nz-descriptions-item nzTitle="{{ row.statut }}" >

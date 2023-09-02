@@ -67,4 +67,18 @@ export class ColisService {
     
     return this.http.post<Colis>('/api/colis', colis, {headers});
   }
+
+//-----------------------
+
+  private jsonUrl = 'assets/country.json';
+  private jsonUrl2 = 'assets/countryPhone.json';
+
+  loadJsonData(): Observable<any> {
+    return this.http.get(this.jsonUrl);
+  }
+
+  loadJsonData2(): Observable<any> {
+    return this.http.get(this.jsonUrl2);
+  }
+
 }

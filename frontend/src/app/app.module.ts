@@ -59,6 +59,11 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { AjoutColisComponent } from './components/ajout-colis/ajout-colis.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzCascaderModule } from 'ng-zorro-antd/cascader';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 
 
@@ -113,7 +118,13 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzProgressModule,
     NzDescriptionsModule,
     NzBadgeModule,
-    NzIconModule
+    NzIconModule,
+    NzTimePickerModule,
+    NzDatePickerModule,
+    NzSelectModule,
+    NzCascaderModule,
+    NgxIntlTelInputModule,
+
 
 
    

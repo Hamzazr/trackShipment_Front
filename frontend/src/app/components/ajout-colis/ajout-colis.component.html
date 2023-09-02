@@ -2,28 +2,56 @@
     <h1 class="text-base font-semibold leading-7 text-gray-900" style="text-align: center; margin-top: 30px; margin-bottom: -15px;">Ajouter Colis</h1>
   
     <form nz-form [formGroup]="ajoutform" class="space-y-6">
-      <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="numero">Numero </nz-form-label>
+      <nz-form-item class="a1">
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="numero">Tracking Number </nz-form-label>
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Numero!">
-            <input nz-input formControlName="numero" id="numero" />
+            <input nz-input formControlName="numero" id="numero" placeholder="e.g. C2G4HJEBHKJ23HJK678" />
           </nz-form-control>
         </nz-form-item>
+
+      <nz-form-item class="a1">
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Origine Country</nz-form-label>
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Country" [(ngModel)]="selectedCountry" (ngModelChange)="onCountryChange($event)">
+          <nz-option  *ngFor="let country of countries" [nzLabel]="country.name" [nzValue]="country.code"></nz-option>
+        </nz-select>
+      </nz-form-item>
+      <div *ngIf="selectedCountry">
+        Selected Country: {{ selectedCountry }}
+      </div>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Destination Country</nz-form-label>
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Country" [(ngModel)]="selectedCountry" (ngModelChange)="onCountryChange($event)">
+          <nz-option *ngFor="let country of countries" [nzLabel]="country.name" [nzValue]="country.code"></nz-option>
+        </nz-select>
+      </nz-form-item>
+      <div *ngIf="selectedCountry">
+        Selected Country: {{ selectedCountry }}
+      </div>
+
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="statut" nzRequired>Statut </nz-form-label>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="statut" nzRequired>Recipient Post Code </nz-form-label>
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your Statut!">
             <input
               nz-input
               type="text"
               id="statut"
               formControlName="statut"
-              
+              placeholder="e.g. 84003"
             />
           </nz-form-control>  
         </nz-form-item>
-      
+
         <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>shipping Date</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <nz-date-picker nzShowTime formControlName="datePickerTime"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      
+        <!-- <nz-form-item>
           <nz-form-label
-            [nzSm]="6"
+            [nzSm]="8"
             [nzXs]="24"
             nzFor="adresse"
             nzRequired
@@ -34,21 +62,70 @@
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your description!">
             <input nz-input id="description" formControlName="description" />
           </nz-form-control>
-        </nz-form-item>
+        </nz-form-item> -->
         
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="poids" nzRequired>Poids </nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input poids!">
-            <input nz-input id="ville" formControlName="poids" placeholder="poids" />
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="poids" nzRequired>Title </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input title!">
+            <input nz-input id="title" formControlName="poids" placeholder="e.g. Running shoes" />
           </nz-form-control>
         </nz-form-item>
-  
+
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="emplacement" nzRequired>Emplacement </nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input emplacement!">
-            <input nz-input id="emplacement" formControlName="emplacement" placeholder="emplacement" />
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="poids" nzRequired>Order Number </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Order Number!">
+            <input nz-input id="Order Number" formControlName="poids" placeholder="e.g. 40401290191" />
           </nz-form-control>
         </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="poids" nzRequired>Phone Number </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Order Number!">
+            <!-- <input nz-input id="phone2" type="tel2" formControlName="poids" placeholder="e.g. 40401290191" /> -->
+            <ngx-intl-tel-input nz-input
+                [cssClass]="'custom'"
+                [preferredCountries]="preferredCountries"
+                [enableAutoCountrySelect]="true"
+                [enablePlaceholder]="true"
+                [searchCountryFlag]="true"
+                [searchCountryField]="[
+                  SearchCountryField.Iso2,
+                  SearchCountryField.Name
+                ]"
+                [selectFirstCountry]="true"
+                [selectedCountryISO]="CountryISO.India"
+                [maxLength]="15"
+                [phoneValidation]="true"
+                [separateDialCode]="separateDialCode"
+                [numberFormat]="PhoneNumberFormat.National"
+                name="phone"
+                formControlName="phone"
+          >
+          </ngx-intl-tel-input>
+          </nz-form-control>
+        </nz-form-item>
+
+        
+
+        <!-- <nz-form-item class="a1">
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Recipient Phone number</nz-form-label>
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Phone" [(ngModel)]="selectedPhone" (ngModelChange)="onPhoneChange($event)">
+            <nz-option  *ngFor="let phone of phones" [nzLabel]="phone.dial_code" [nzValue]="phone.code"></nz-option>
+          </nz-select>
+        </nz-form-item>
+        <div *ngIf="selectedPhone">
+        Selected Country: {{ selectedPhone }}
+        </div> -->
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="poids" nzRequired>Recipient Email </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Order Number!">
+            <input nz-input id="Recipient Email" formControlName="poids" placeholder="e.g. recipient@email.com" />
+          </nz-form-control>
+        </nz-form-item>
+
+        
+  
   
         <!-- <nz-form-item>
           <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="transporteur" nzRequired>Transporteur </nz-form-label>
@@ -56,7 +133,12 @@
             <input nz-input id="transporteur" formControlName="transporteur" placeholder="transporteur" />
           </nz-form-control>
         </nz-form-item> -->
+
+
+      
         
+        
+
         
         <nz-form-item nz-row class="register-area">
           <nz-form-control [nzSpan]="14" [nzOffset]="6">
