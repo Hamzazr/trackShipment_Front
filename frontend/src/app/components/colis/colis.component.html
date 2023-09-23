@@ -4,22 +4,22 @@
       <tr> 
         <th></th>
         <th>Id</th>
-        <th>Numero</th>
+        <th>SuiviNumero</th>
         <th>Statut</th>
         <th>Discription</th>
-        <th>Poid</th>
         <th>emplacement</th> 
         <th>Transporteur</th>
-        <th>Client</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Sender</th>
+        <th>Recipient</th>
+        <!-- <th>Edit</th>
+        <th>Delete</th> -->
       </tr>
     </thead>
     <tbody>
       <ng-template ngFor let-row [ngForOf]="dataSource.items">
         <tr>
           <td nz-expand [(nzExpand)]="row.expand"></td>
-          <td>{{ row.id }}</td>
+          <td>{{ row.id_colis }}</td>
           <!-- <td><input [(ngModel)]="row.numero" [disabled]="!row.editing" /></td> -->
           <!-- <td>
             <div class="editable-cell" [hidden]="editId === row.id" (click)="startEdit(row.id)">
@@ -27,7 +27,7 @@
             </div>
             <input [hidden]="editId !== row.id" type="text" nz-input [(ngModel)]="row.numero" (blur)="stopEdit()" />
           </td> -->
-          <td> {{ row.numero }} </td>
+          <td> {{ row.suivi_numero }} </td>
           <td style="width: 200px;">
             <nz-descriptions>
                 <nz-descriptions-item nzTitle="{{ row.statut }}" >
@@ -36,10 +36,10 @@
             </nz-descriptions>
           </td>
           <td>{{ row.description }}</td>
-          <td>{{ row.poids }}</td>
           <td>{{ row.emplacement }}</td>
           <td>{{ row.transporteur }}</td>
-          <td>{{ row.client.last_name }}</td>
+          <td>{{ row.sender.last_name }}</td>
+          <td>{{ row.recipient }}</td>
           
           <td>
             <span nz-icon nzType="edit" nzTheme="twotone" (click)="toggleEdit(row)"></span>

@@ -13,7 +13,8 @@ import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-
 })
 export class AjoutColisComponent implements OnInit {
 
-  ajoutform : FormGroup;
+  AddColis : FormGroup;
+  AddRecipient : FormGroup;
   phones: any[] = [];
   countries: any[] = [];
   selectedCountry: string = '';
@@ -26,16 +27,25 @@ export class AjoutColisComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.ajoutform = this.formBuilder.group({
-      numero : [null, [Validators.required]],
-      statut : [null, [Validators.required]],
-      description : [null, [Validators.required]],
-      poids : [null, [Validators.required]],
-      emplacement : [null, [Validators.required]],
-      datePickerTime: [null],
-      destination: [null]
+    this.AddColis = this.formBuilder.group({
 
+      Tracking_Number : [null, [Validators.required]],
+      title : [null, [Validators.required]],
+      Origine_Country : [null, [Validators.required]],
+      Destination_Country : [null, [Validators.required]],
+      shipping_Date : [null, [Validators.required]],
+      Order_Number : [null, [Validators.required]],
+      
     }),
+
+    this.AddRecipient = this.formBuilder.group({
+      Name : [null, [Validators.required]],
+      CodePostal : [null, [Validators.required]],
+      NumTel : [null, [Validators.required]],
+      Email : [null, [Validators.required]],
+    });
+
+      
     this.colisService.loadJsonData().subscribe(
       (data: any) => {
         this.countries = data;
@@ -72,7 +82,7 @@ export class AjoutColisComponent implements OnInit {
   }
 
   post() {
-    this.colisService.post(this.ajoutform.getRawValue()).subscribe(
+    this.colisService.post(this.AddColis.getRawValue()).subscribe(
       response => {
         console.log('Colis created:', response);
       },
@@ -82,7 +92,7 @@ export class AjoutColisComponent implements OnInit {
     );
   }
 
-
+// Country
 
   separateDialCode = false;
 	SearchCountryField = SearchCountryField;
@@ -96,5 +106,17 @@ export class AjoutColisComponent implements OnInit {
 	changePreferredCountries() {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
 	}
+
+
+//Courrier
+
+courierOptions = [
+  { name: 'FedEx', logoUrl: 'https://www.cleanpng.com/png-fedex-courier-express-mail-freight-transport-unite-3028973/' },
+  { name: 'DHL', logoUrl: 'https://www.cleanpng.com/png-dhl-express-courier-business-delivery-mail-dhl-5116867/' },
+  // Add more courier options with logos here
+];
+
+selectedCourier: string | null = null;
+
 
 }

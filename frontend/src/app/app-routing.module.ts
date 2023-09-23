@@ -9,6 +9,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { ColisProfileComponent } from './components/colis-profile/colis-profile.component';
 import { AjoutColisComponent } from './components/ajout-colis/ajout-colis.component';
 import { authGuard } from './guards/auth.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RecipientComponent } from './components/recipient/recipient.component';
 
 const routes: Routes = [
   { 
@@ -18,6 +20,16 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  // { 
+  //   path: '',
+  //   redirectTo: '/dashboard',
+  //   pathMatch: 'full' 
+  // },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'home-page',
@@ -69,6 +81,11 @@ const routes: Routes = [
     ]
     
   },
+  {
+    path: 'recipient',
+    component: RecipientComponent,
+    canActivate: [authGuard]
+  }
   
 ];
 

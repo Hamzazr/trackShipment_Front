@@ -51,7 +51,7 @@ export class ColisService {
   }
 
   updateOne(colis : Colis):Observable<Colis>{
-    return this.http.put('api/colis/'+ colis.id, colis)
+    return this.http.put('api/colis/'+ colis.id_colis, colis)
   }
 
   post(colis: Colis): Observable<Colis> {

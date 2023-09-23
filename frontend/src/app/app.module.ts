@@ -34,7 +34,7 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 //import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzFormModule, NzFormLayoutType } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -64,7 +64,12 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzCascaderModule } from 'ng-zorro-antd/cascader';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { RecipientComponent } from './components/recipient/recipient.component';
+import { TransporteurComponent } from './components/transporteur/transporteur.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+//import { NzFormLayoutType } from 'ng-zorro-antd/form';
 
 
 
@@ -75,13 +80,11 @@ const antDesignIcons = AllIcons as {
 };
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 
-
-// import { DragDropModule } from '@angular/cdk/drag-drop';
-// import { ScrollingModule } from '@angular/cdk/scrolling';
-// import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, RegisterComponent, UsersComponent, UserProfileComponent, ColisComponent, HomePageComponent, ColisProfileComponent, AjoutColisComponent
+    AppComponent, LoginComponent, RegisterComponent, UsersComponent, UserProfileComponent, ColisComponent, 
+    HomePageComponent, ColisProfileComponent, AjoutColisComponent, RecipientComponent, TransporteurComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -124,6 +127,10 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzSelectModule,
     NzCascaderModule,
     NgxIntlTelInputModule,
+    NzRadioModule,
+ 
+
+    
 
 
 

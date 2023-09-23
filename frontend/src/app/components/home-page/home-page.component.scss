@@ -1,117 +1,107 @@
 .example-icon {
-    padding: 0 14px;
-  }
-  /* #docregion toolbar-position-content-style */
-  .example-spacer {
-    flex: 1 1 auto;
-  }
-  /* #enddocregion toolbar-position-content-style */
-  
-  :host {
-    display: block;
-    height: 100%;
-  }
-  
-  nz-sider {
-    background: #212529;
-    color: #fff;
-  
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-  
-      li {
-        a {
-          display: block;
-          color: #fff;
-          text-decoration: none;
-          padding: 10px 20px;
-          transition: background-color 0.3s ease;
-  
-          &:hover {
-            background-color: #f0ad4e;
-          }
+  padding: 0 14px;
+}
+/* #docregion toolbar-position-content-style */
+.example-spacer {
+  flex: 1 1 auto;
+}
+/* #enddocregion toolbar-position-content-style */
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+nz-sider {
+  background: #0e4985;
+  color: #fff;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #f0ad4e;
         }
       }
     }
-  
-    &.nz-collapsed {
-      width: 80px;
-  
-      li a {
-        padding: 10px 0;
-        text-align: center;
-  
-        i {
-          font-size: 20px;
-        }
-      }
-    }
-  }
-  
-  // app.component.scss
-  
-  nz-header {
-    background: #fff;
-    padding: 0;
-  }
-  
-  nz-content {
-    margin: 16px;
-  }
-  
-  nz-breadcrumb {
-    margin: 16px 0;
-  }
-  
-  .inner-content {
-    padding: 24px;
-    background: #fff;
-    min-height: 360px;
-  }
-  
-  nz-footer {
-    text-align: center;
-  }
-  
-  .logo {
-    height: 32px;
-    margin: 16px;
-    background: rgba(255, 255, 255, 0.3);
-  }
-  
-  nz-header {
-    background: #fff;
-    padding: 0;
-    
-  }
-  
-  nz-content {
-    margin: 0 16px;
-  }
-  
-  nz-breadcrumb {
-    margin: 16px 0;
-  }
-  
-  .inner-content {
-    padding: 24px;
-    background: #fff;
-    min-height: 720px;
-  }
-  
-  nz-footer {
-    text-align: center;
   }
 
-  .btn-image {
-    //background-image: url('../../bg1.jpg') !important;
-    background-size: contain; 
-    background-color: #0e4985;
-    color: #fffafa;
-    font-size: larger;
-    padding: 40px;
-    margin-left: 670px;
-    margin-right: auto;
+  &.nz-collapsed {
+    width: 80px;
+
+    li a {
+      padding: 10px 0;
+      text-align: center;
+
+      i {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+// app.component.scss
+
+nz-header {
+  background: #fff;
+
+  padding: 0;
+}
+
+nz-content {
+  margin: 16px;
+  background-color: black;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+
+
+nz-footer {
+  text-align: center;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+nz-header {
+  background: #fff;
+  padding: 0;
+  
+}
+
+// nz-content {
+//   margin: 0 16px;
+//   background-image: url("./bg1.jpg");
+// }
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+.inner-content {
+  padding: 24px;
+  min-height: 720px;
+  background-color: #ffffff;
+  // background-image: url("./bg1.jpg");
+  // background-repeat:round;
+}
+
+nz-footer {
+  text-align: center;
 }

@@ -9,10 +9,57 @@
 
 :host {
   display: block;
+  //text-align: center;
   height: 100%;
 }
 
 nz-sider {
+  li[nz-submenu] {
+    margin: 0;
+    padding: 0;
+  
+    ul {
+      // list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+  
+    /* Style the menu items inside the submenu */
+    li[nz-menu-item] {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+  
+      a {
+        color: white;
+        text-decoration: none;
+  
+        &:hover {
+          color: #1890ff; /* Change the color on hover */
+        }
+      }
+  
+      /* Add submenu-specific styles here */
+    }
+  }
+  
+  /* Style the menu items outside the submenu */
+  li[nz-menu-item]:not([nz-submenu]) {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+  
+    a {
+      color: white;
+      text-decoration: none;
+  
+      &:hover {
+        color: blue; /* Change the color on hover */
+      }
+    }
+  
+    /* Add non-submenu-specific styles here */
+  }
   background: #0e4985;
   color: #fff;
 
@@ -23,7 +70,7 @@ nz-sider {
 
     li {
       a {
-        display: block;
+        display: inline-block;
         color: #fff;
         text-decoration: none;
         padding: 10px 20px;
@@ -52,26 +99,21 @@ nz-sider {
 
 // app.component.scss
 
-nz-header {
-  background: #fff;
+// nz-header {
+//   background: #fff;
 
-  padding: 0;
-}
+//   padding: 0;
+// }
 
-nz-content {
-  margin: 16px;
-  background-color: black;
-}
+// nz-content {
+//   margin: 16px;
+//   background-color: black;
+// }
 
-nz-breadcrumb {
-  margin: 16px 0;
-}
+// nz-breadcrumb {
+//   margin: 16px 0;
+// }
 
-
-
-nz-footer {
-  text-align: center;
-}
 
 .logo {
   height: 32px;
@@ -82,12 +124,10 @@ nz-footer {
 nz-header {
   background: #fff;
   padding: 0;
-  
 }
 
 nz-content {
   margin: 0 16px;
-  background-image: url("./bg1.jpg");
 }
 
 nz-breadcrumb {
@@ -96,12 +136,14 @@ nz-breadcrumb {
 
 .inner-content {
   padding: 24px;
-  min-height: 720px;
-  background-color: #ffffff;
-  // background-image: url("./bg1.jpg");
-  // background-repeat:round;
+  background: #fff;
+  min-height: 760px;
 }
 
 nz-footer {
   text-align: center;
+}
+
+nz-submenu{
+  display: flex;
 }

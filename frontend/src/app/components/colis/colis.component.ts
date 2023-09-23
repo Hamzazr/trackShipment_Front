@@ -16,7 +16,7 @@ export class ColisComponent implements OnInit{
   dataSource: ColisData = {
     items: [],
     meta: {
-      totalItems: 0,
+      totalItems: 0, 
       itemCount: 0,
       itemsPerPage: 0,
       totalPages: 0,
@@ -31,7 +31,7 @@ export class ColisComponent implements OnInit{
   }; 
  
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['id', 'numero', 'statut', 'transporteur', 'client', 'description', 'poids', 'emplacement'];
+  displayedColumns: string[] = ['id_colis', 'suivi_numero', 'statut', 'description', 'emplacement' , 'sender',  'recipient', 'transporteur'];
 
   constructor(private colisService: ColisService, private router: Router, private activatedRoute: ActivatedRoute) { }
 

@@ -1,22 +1,23 @@
+import { Recipient } from "./recipient.interface";
 import { Transporteur } from "./trans.interface";
 import { User } from "./user.interface";
 
 export interface Colis {
-    id?: number;
+    id_colis?: number;
 
-    numero?: number;
+    suivi_numero?: number;
 
-    statut?: string; 
-
-    transporteur?: Transporteur;
-    
-    client?: User;
+    statut?: string;
 
     description?: string;
 
-    poids?: number;
-
     emplacement?: string;
+
+    transporteur?: Transporteur;
+
+    recipient?: Recipient;
+
+    sender?: User;
 }
 
 export interface Meta {
