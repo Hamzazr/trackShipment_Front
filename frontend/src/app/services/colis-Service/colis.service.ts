@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Colis, ColisPageable } from 'src/app/components/models/colis.interface';
+import { TrackingRequest } from 'src/app/components/models/trackRequest';
+import { TrackResult } from 'src/app/components/models/TrackResultResponse';
 
 export const JWT_NAME = 'JWT_SECRET';
 
@@ -79,6 +81,31 @@ export class ColisService {
 
   loadJsonData2(): Observable<any> {
     return this.http.get(this.jsonUrl2);
+  }
+
+  //----------------------- Detaile Colis Page -----------------------------
+  private baseUrl = '/api/tracking';
+  private data = {
+    "includeDetailedScans": false,
+    "trackingInfo": [
+        {
+            "trackingNumberInfo": {
+                "trackingNumber": "394940543544"
+            }
+        }
+    ]
+}
+  trackShipment(trackingNumbers: TrackingRequest): Observable<TrackResult> {
+    try{
+      return this.http.post<TrackResult>(
+        `${this.baseUrl}/track-shipment`,
+        this.data,
+      );
+    }catch(error){
+      console.log('error',error)
+      throw error;
+    }
+    
   }
 
 }

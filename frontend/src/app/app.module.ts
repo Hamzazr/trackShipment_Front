@@ -70,6 +70,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 //import { NzFormLayoutType } from 'ng-zorro-antd/form';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { GoogleMapsModule } from '@angular/google-maps';
+
 
 
 
@@ -128,6 +135,13 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzCascaderModule,
     NgxIntlTelInputModule,
     NzRadioModule,
+    NzGridModule,
+    NzSliderModule,
+    NzPageHeaderModule,
+    NzTagModule,
+    NzSpaceModule,
+    GoogleMapsModule,
+    
  
 
     

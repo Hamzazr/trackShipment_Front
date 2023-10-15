@@ -1,11 +1,11 @@
 <nz-layout>
     <nz-sider nzCollapsible nzWidth="200px">
       <div class="logo"></div>
-      <!-- <ul nz-menu nzTheme="dark" nzMode="inline"> -->
+      <ul nz-menu nzTheme="dark" nzMode="inline">
         <li nz-menu-item>
           <span nz-icon nzType="desktop"></span>
           <span><a routerLink="/dashboard">Home</a></span>
-        </li>
+        </li> 
     
         <li nz-submenu nzTitle="User" nzIcon="user">
           <ul>
@@ -18,13 +18,11 @@
             <li nz-menu-item>
               <span><a routerLink="/register">Register</a></span>
             </li>
-            
             <li nz-menu-item>
-          
               <span><a (click)="logout()">logout</a></span>
             </li>
-        </ul>
-      </li>
+          </ul>
+        </li>
       <li nz-submenu nzTitle="Colis" nzIcon="user">
         <ul>
           <li nz-menu-item>
@@ -41,17 +39,14 @@
         </ul>
       </li>
         
-      <!-- </ul> -->
+      </ul>
     </nz-sider>
     <nz-layout>
       <nz-header>
-        
+      
       </nz-header>
       <nz-content>
-        <nz-breadcrumb>
-          <nz-breadcrumb-item>/</nz-breadcrumb-item>
-          <nz-breadcrumb-item></nz-breadcrumb-item>
-        </nz-breadcrumb>
+        
         <div class="inner-content"><router-outlet></router-outlet></div>
       </nz-content>
       <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>

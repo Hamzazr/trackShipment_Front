@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from './services/authentification-Service/auth.service';
 import * as intlTelInput from 'intl-tel-input';
+import { AnimationBuilder } from '@angular/animations'
 
 
 @Component({

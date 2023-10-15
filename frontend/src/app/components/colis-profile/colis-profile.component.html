@@ -1,23 +1,137 @@
-    <nz-steps [nzCurrent]="1" nzProgressDot>
+  <div class="cadreR">
+    <!-- <nz-steps [nzCurrent]="1" nzProgressDot>
         <nz-step nzTitle="Finished" nzDescription="This is a description."></nz-step>
         <nz-step nzTitle="In Progress" nzDescription="This is a description."></nz-step>
         <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
-    </nz-steps>
-      <nz-divider></nz-divider>
-    <div style="position: absolute;">
-        <nz-steps [nzCurrent]="1" nzProgressDot nzDirection="vertical">
-            <nz-step nzTitle="Finished" nzDescription="This is a description. This is a description."></nz-step>
-            <nz-step nzTitle="Finished" nzDescription="This is a description. This is a description."></nz-step>
-            <nz-step nzTitle="In Progress" nzDescription="This is a description. This is a description."></nz-step>
-            <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
-            <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
-        </nz-steps>
+    </nz-steps> -->
+    
+    <nz-divider nzOrientation="left" nzText="Status : "></nz-divider>
+    <div nz-row [nzGutter]="[16, 24]">
+      <div nz-col class="gutter-row" [nzSpan]="14">
+        <div class="inner-box" style="background-color: white;">
+          <nz-page-header class="site-page-header">
+          <nz-avatar nz-page-header-avatar nzSrc="assets/PicTranspo/checkmark.png"></nz-avatar>
+          <!--title-->
+          <nz-page-header-title style="color: darkcyan; display: block;">DELIVERED</nz-page-header-title>
+          <nz-row style="margin-top: 30px;">
+            <nz-statistic nzTitle="Tracking Id : " nzValue="771473846105"></nz-statistic>
+          </nz-row>          
+          <!--subtitle-->
+          <!-- <nz-page-header-subtitle>This is a subtitle</nz-page-header-subtitle> -->
+    
+          <!--tags-->
+          <nz-page-header-content>
+              <nz-page-header-tags style="margin-left: 40px;">
+                <nz-tag [nzColor]="'blue'">Monday 3/16/23 at 5:44PM</nz-tag>
+              </nz-page-header-tags>
+          </nz-page-header-content>
+          <!--extra-->
+          <nz-page-header-content>
+            <nz-row nzType="flex" style="margin-top: 30px;">
+              <nz-statistic nzTitle="From" nzValue="Morocco, Casa"></nz-statistic>
+              <nz-statistic nzTitle="To" nzValue="France, Paris" style="margin: 0 100px"></nz-statistic>
+            </nz-row>
+            
+            <nz-row style="margin-top: 30px;">
+              <nz-page-header-subtitle>Want updates on this shipment? Enter your email and we will do the rest!</nz-page-header-subtitle>
+              <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+                <input type="text" nz-input placeholder="Your Email" />
+              </nz-input-group>
+              <ng-template #suffixButton style="padding: 0%;">
+                <button nz-button nzType="primary" nzSize="large" nzSearch>Submit</button>
+              </ng-template>
+          </nz-row>
+          </nz-page-header-content>
+     
+        </nz-page-header> 
+        
+        </div> 
     </div>
-    <div style="background: #ffffff; padding: 30px; position: absolute; margin-left: 730px; margin-bottom: 0px;">
-      <nz-progress [nzPercent]="75" nzType="circle"></nz-progress>
-      <!-- <nz-progress [nzPercent]="70" nzType="circle" nzStatus="exception"></nz-progress>
-      <nz-progress [nzPercent]="100" nzType="circle"></nz-progress> -->
+           
+
+    
+    <div nz-row [nzGutter]="[16, 24]">
+      <div nz-col class="gutter-row" [nzSpan]="20" style="margin-top: 90px;">
+        <div class="inner-box">
+            <nz-steps [nzCurrent]="1" nzProgressDot nzDirection="vertical">
+                <nz-step nzTitle="Finished" nzDescription="This is a description. This is a description."></nz-step>
+                <nz-step nzTitle="Finished" nzDescription="This is a description. This is a description."></nz-step>
+                <nz-step nzTitle="In Progress" nzDescription="This is a description. This is a description."></nz-step>
+                <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
+                <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
+            </nz-steps>
+          
+        </div>
+      </div>
     </div>
+
+    <nz-divider nzOrientation="left" nzText="Shipment facts : "></nz-divider>
+    <div nz-row [nzGutter]="[16, 24]">
+      <div nz-col class="gutter-row" [nzSpan]="24">
+        <div class="inner-box" style="background-color: white;">
+          <nz-page-header class="site-page-header">
+
+            <!-- Shipment overview -->
+
+            <nz-avatar nz-page-header-avatar nzSrc="assets/PicTranspo/approval.png"></nz-avatar>
+            <nz-page-header-title style="color: rgb(0, 0, 0); display: block;">Shipment overview</nz-page-header-title>
+            <nz-page-header-content style="margin-left: 5%; margin-right: 20%;">
+              <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
+                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">TRACKING NUMBER</div>
+                <div nz-col nzFlex="2">771473846105</div>
+              </div>
+              <div nz-row style=" width: 900px;">
+                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">SHIP DATE</div>
+                <div nz-col nzFlex="2">3/13/23</div>
+              </div>
+              <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
+                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">ACTUAL DELIVERY</div>
+                <div nz-col nzFlex="2">3/16/23 at 5:44 PM</div>
+              </div>
+              
+            </nz-page-header-content>nz-page-header-content>
+          </nz-page-header> 
+
+            <!-- Packege Detail -->
+            <nz-page-header class="site-page-header" >
+            <nz-avatar nz-page-header-avatar nzSrc="assets/PicTranspo/package.png"></nz-avatar>
+            <nz-page-header-title style="color: rgb(0, 0, 0); display: block;">Package Details</nz-page-header-title>
+            <nz-page-header-content style="margin-left: 5%; margin-right: 20%;">
+              <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
+                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Count</div>
+                <div nz-col nzFlex="2"> </div>
+              </div>
+              <div nz-row style=" width: 900px;">
+                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Width</div>
+                <div nz-col nzFlex="2">76 CM</div>
+              </div>
+              <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
+                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">height</div>
+                <div nz-col nzFlex="2">12 CM</div>
+              </div>
+              <div nz-row style=" width: 900px;">
+                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">length</div>
+                <div nz-col nzFlex="2">121 CM</div>
+              </div>
+
+            </nz-page-header-content>
+          </nz-page-header> 
+          
+    </div>
+    <button (click)="onTrackShipment()">kazzoun</button>
+    <div *ngIf="shipmentStatus">{{ shipmentStatus.data.packageDetails.count }}</div>
+    
+        
+
+
+
+  
+
+
+    </div>
+  </div>
+
+  
 
 
 

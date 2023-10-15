@@ -1,16 +1,76 @@
 
 
 #cadreR{
+  
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     max-width: 700px;
+    width: 50%;
     border: solid 1px gainsboro;
     padding: 20px;
     border-radius: 30px;
+    
   }
+
+
 
   nz-card{
     width: 300px;
     margin: 0;
+  }
+
+  .slider {
+    width: 50%;
+  }
+  
+
+  nz-divider {
+    color: #333;
+    font-weight: normal;
+  }
+  .inner-box {
+    background: #ffffff;
+    padding: 8px 0;
+    
+  }
+
+
+
+
+
+
+
+
+  .content {
+    flex: 1;
+  }
+
+  .content p {
+    margin-bottom: 1em;
+  }
+
+  .content-link a {
+    margin-right: 16px;
+  }
+
+  .content-link a img {
+    margin-right: 8px;
+  }
+
+  .content-image {
+    margin: 0 0 0 60px;
+    display: flex;
+    align-items: center;
+  }
+
+  .content-image img {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .content-image {
+      flex: 100%;
+      margin: 24px 0 0;
+    }
   }

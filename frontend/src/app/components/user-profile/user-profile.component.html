@@ -1,5 +1,83 @@
 
+<div class="flex-container">
 
+    <div id="cadreA" >
+
+        <form nz-form class="space-y-6">
+          <div nz-row class="three-inputs-row">
+            <div nz-col [nzSpan]="12">
+              <nz-form-item class="above-select">
+                  <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="Tracking_Number" style="display: block;" >First Name</nz-form-label>
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Tracking Numero!">
+                    <input nz-input style="width: 250px;" id="tracking_numero" placeholder="e.g. C2G4HJEBHKJ23HJK678" />
+                  </nz-form-control>
+              </nz-form-item>
+            </div> 
+            <div nz-col [nzSpan]="12">
+                <nz-form-item class="above-select">
+                  <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="title" >Last Name</nz-form-label>
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input title!">
+                    <input nz-input id="title" style="width: 250px;" formControlName="" placeholder="e.g. Running shoes" />
+                  </nz-form-control>
+                </nz-form-item>
+            </div>
+    
+            <div nz-col [nzSpan]="12">
+                <nz-form-item class="above-select">
+                  <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="title" >Email</nz-form-label>
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input title!">
+                    <input nz-input id="title" style="width: 250px;" formControlName="" placeholder="e.g. Running shoes" />
+                  </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <div nz-col [nzSpan]="12">
+                <nz-form-item class="above-select">
+                  <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="address" >Address</nz-form-label>
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input address!">
+                    <input nz-input id="title" style="width: 250px;" formControlName="" placeholder="e.g. Running shoes" />
+                  </nz-form-control>
+                </nz-form-item>
+            </div>
+    
+            <div nz-col [nzSpan]="12">
+                <nz-form-item class="above-select">
+                  <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="title" >Phone</nz-form-label>
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input title!">
+                    <input nz-input id="title" style="width: 250px;" formControlName="" placeholder="e.g. Running shoes" />
+                  </nz-form-control>
+                </nz-form-item>
+            </div>
+            
+          
+            <div nz-col [nzSpan]="12">
+                <nz-form-item class="above-select">
+                    <nz-form-label [nzSm]="8" [nzXs]="24" >Country</nz-form-label>
+                  <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Country">
+                    <nz-option  *ngFor="let country of countries" [nzLabel]="country.name" [nzValue]="country.code"></nz-option>
+                  </nz-select>  
+                </nz-form-item>
+                <div *ngIf="selectedCountry">
+                  Selected Country: {{ selectedCountry }}
+                </div>
+            </div>
+    
+            <div nz-col [nzSpan]="12">
+                <nz-form-item class="above-select">
+                  <nz-form-label [nzSm]="8" [nzXs]="24"  nzFor="title" >Ville</nz-form-label>
+                  <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input title!">
+                    <input nz-input id="title" style="width: 250px;" formControlName="" placeholder="e.g. Running shoes" />
+                  </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            
+    
+        
+          </div>
+    
+      </form>
+      </div> 
 
 <div *ngIf="user" class="main-div">
     <mat-card class="card">
@@ -16,4 +94,8 @@
             <p>Ville: {{user.ville}}</p>
         </mat-card-content>
     </mat-card>
+</div>
+
+
+
 </div>

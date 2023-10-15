@@ -14,6 +14,7 @@
 }
 
 nz-sider {
+  
   li[nz-submenu] {
     margin: 0;
     padding: 0;
@@ -97,24 +98,6 @@ nz-sider {
   }
 }
 
-// app.component.scss
-
-// nz-header {
-//   background: #fff;
-
-//   padding: 0;
-// }
-
-// nz-content {
-//   margin: 16px;
-//   background-color: black;
-// }
-
-// nz-breadcrumb {
-//   margin: 16px 0;
-// }
-
-
 .logo {
   height: 32px;
   margin: 16px;
@@ -122,7 +105,7 @@ nz-sider {
 }
 
 nz-header {
-  background: #fff;
+  background: #2361a0;
   padding: 0;
 }
 
