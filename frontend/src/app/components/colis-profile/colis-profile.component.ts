@@ -19,7 +19,7 @@ export class ColisProfileComponent {
   onTrackShipment() {
     this.trackingService.trackShipment(this.trackingNumbers).subscribe(
       (response) => {
-        this.shipmentStatus = response;
+        this.shipmentStatus = response.data;
         console.log(this.shipmentStatus);
       },
       (error) => {

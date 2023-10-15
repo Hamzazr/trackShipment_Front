@@ -99,11 +99,11 @@
             <nz-page-header-content style="margin-left: 5%; margin-right: 20%;">
               <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
                 <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Count</div>
-                <div nz-col nzFlex="2"> </div>
+                <div nz-col nzFlex="2" *ngIf="shipmentStatus"> {{ shipmentStatus.packageDetails.count }}</div>
               </div>
               <div nz-row style=" width: 900px;">
                 <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Width</div>
-                <div nz-col nzFlex="2">76 CM</div>
+                <div nz-col nzFlex="2" >76 CM</div>
               </div>
               <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
                 <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">height</div>
@@ -119,7 +119,7 @@
           
     </div>
     <button (click)="onTrackShipment()">kazzoun</button>
-    <div *ngIf="shipmentStatus">{{ shipmentStatus.data.packageDetails.count }}</div>
+   
     
         
 

@@ -3,6 +3,10 @@ export class TrackResult{
     packageDetails : PackageDetails;
 }
 
+export class TrackResponse{
+    data : TrackResult;
+}
+
 
 export class RecipientInformation {
     address: Address;

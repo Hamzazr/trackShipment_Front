@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Colis, ColisPageable } from 'src/app/components/models/colis.interface';
 import { TrackingRequest } from 'src/app/components/models/trackRequest';
-import { TrackResult } from 'src/app/components/models/TrackResultResponse';
+import { TrackResponse, TrackResult } from 'src/app/components/models/TrackResultResponse';
 
 export const JWT_NAME = 'JWT_SECRET';
 
@@ -95,9 +95,9 @@ export class ColisService {
         }
     ]
 }
-  trackShipment(trackingNumbers: TrackingRequest): Observable<TrackResult> {
+  trackShipment(trackingNumbers: TrackingRequest): Observable<TrackResponse> {
     try{
-      return this.http.post<TrackResult>(
+      return this.http.post<TrackResponse>(
         `${this.baseUrl}/track-shipment`,
         this.data,
       );
