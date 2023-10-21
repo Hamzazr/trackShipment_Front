@@ -12,7 +12,7 @@
           <nz-page-header class="site-page-header">
           <nz-avatar nz-page-header-avatar nzSrc="assets/PicTranspo/checkmark.png"></nz-avatar>
           <!--title-->
-          <nz-page-header-title style="color: darkcyan; display: block;">DELIVERED</nz-page-header-title>
+          <nz-page-header-title style="color: darkcyan; display: block;" *ngIf="shipmentStatus">{{ shipmentStatus.events[shipmentStatus.events.length - 1].derivedStatus }}</nz-page-header-title>
           <nz-row style="margin-top: 30px;">
             <nz-statistic nzTitle="Tracking Id : " nzValue="771473846105"></nz-statistic>
           </nz-row>          
@@ -22,14 +22,14 @@
           <!--tags-->
           <nz-page-header-content>
               <nz-page-header-tags style="margin-left: 40px;">
-                <nz-tag [nzColor]="'blue'">Monday 3/16/23 at 5:44PM</nz-tag>
+                <nz-tag [nzColor]="'blue'" *ngIf="shipmentStatus">{{ shipmentStatus.events[shipmentStatus.events.length - 1].date | date: 'yyyy-MM-dd HH:mm:ss'}}</nz-tag>
               </nz-page-header-tags>
           </nz-page-header-content>
           <!--extra-->
           <nz-page-header-content>
             <nz-row nzType="flex" style="margin-top: 30px;">
-              <nz-statistic nzTitle="From" nzValue="Morocco, Casa"></nz-statistic>
-              <nz-statistic nzTitle="To" nzValue="France, Paris" style="margin: 0 100px"></nz-statistic>
+              <nz-statistic nzTitle="From" *ngIf="shipmentStatus" nzValue="{{ shipmentStatus.shipper.address.countryName }},{{ shipmentStatus.shipper.address.city }}"></nz-statistic>
+              <nz-statistic nzTitle="To" *ngIf="shipmentStatus" nzValue="{{ shipmentStatus.recipient.address.countryName }},{{ shipmentStatus.recipient.address.city }}" style="margin: 0 100px"></nz-statistic>
             </nz-row>
             
             <nz-row style="margin-top: 30px;">
@@ -53,12 +53,11 @@
     <div nz-row [nzGutter]="[16, 24]">
       <div nz-col class="gutter-row" [nzSpan]="20" style="margin-top: 90px;">
         <div class="inner-box">
-            <nz-steps [nzCurrent]="1" nzProgressDot nzDirection="vertical">
-                <nz-step nzTitle="Finished" nzDescription="This is a description. This is a description."></nz-step>
-                <nz-step nzTitle="Finished" nzDescription="This is a description. This is a description."></nz-step>
-                <nz-step nzTitle="In Progress" nzDescription="This is a description. This is a description."></nz-step>
-                <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
-                <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
+            <nz-steps  [nzCurrent]="this.shipmentStatus.events.length" nzProgressDot nzDirection="vertical" >
+                <nz-step *ngFor="let event of shipmentStatus.events; let i = index" 
+                    nzTitle="{{ event.derivedStatus }}" 
+                    nzDescription="{{ event.eventDescription }}">
+                </nz-step>
             </nz-steps>
           
         </div>
@@ -78,15 +77,19 @@
             <nz-page-header-content style="margin-left: 5%; margin-right: 20%;">
               <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
                 <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">TRACKING NUMBER</div>
-                <div nz-col nzFlex="2">771473846105</div>
+                <div nz-col nzFlex="2" *ngIf="shipmentStatus"> {{shipmentStatus.trackingNumber}} </div>
+              </div>
+              <div nz-row style=" width: 900px;"> 
+                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">SHIP DATE</div>
+                <div nz-col nzFlex="2" *ngIf="shipmentStatus"> {{ shipmentStatus.shipDate  | date: 'yyyy-MM-dd HH:mm:ss'}} </div>
+              </div>
+              <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;"> 
+                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Standard Transit</div>
+                <div nz-col nzFlex="2" *ngIf="shipmentStatus"> {{ shipmentStatus.standardTransitTimeWindow  | date: 'yyyy-MM-dd HH:mm:ss'}} </div>
               </div>
               <div nz-row style=" width: 900px;">
-                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">SHIP DATE</div>
-                <div nz-col nzFlex="2">3/13/23</div>
-              </div>
-              <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
                 <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">ACTUAL DELIVERY</div>
-                <div nz-col nzFlex="2">3/16/23 at 5:44 PM</div>
+                <div nz-col nzFlex="2" *ngIf="shipmentStatus"> {{ shipmentStatus.actualDelivery  | date: 'yyyy-MM-dd HH:mm:ss'}} </div>
               </div>
               
             </nz-page-header-content>nz-page-header-content>
@@ -102,23 +105,23 @@
                 <div nz-col nzFlex="2" *ngIf="shipmentStatus"> {{ shipmentStatus.packageDetails.count }}</div>
               </div>
               <div nz-row style=" width: 900px;">
-                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Width</div>
-                <div nz-col nzFlex="2" >76 CM</div>
+                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Weight</div>
+                <div nz-col nzFlex="2" *ngIf="shipmentStatus">{{ shipmentStatus.packageDetails.weight.value }} {{shipmentStatus.packageDetails.weight.unit}}</div>
               </div>
               <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
-                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">height</div>
-                <div nz-col nzFlex="2">12 CM</div>
+                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Dimenstration</div>
+                <div nz-col nzFlex="2" *ngIf="shipmentStatus">{{ shipmentStatus.packageDetails.dimension.length }} x {{shipmentStatus.packageDetails.dimension.width}} x {{shipmentStatus.packageDetails.dimension.height}} {{shipmentStatus.packageDetails.dimension.units}}</div>
               </div>
               <div nz-row style=" width: 900px;">
-                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">length</div>
-                <div nz-col nzFlex="2">121 CM</div>
+                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Packaging</div>
+                <div nz-col nzFlex="2" *ngIf="shipmentStatus">{{ shipmentStatus.packageDetails.packaging }}</div> 
               </div>
 
             </nz-page-header-content>
           </nz-page-header> 
           
     </div>
-    <button (click)="onTrackShipment()">kazzoun</button>
+     
    
     
         

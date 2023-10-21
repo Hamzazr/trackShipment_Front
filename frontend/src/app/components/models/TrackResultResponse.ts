@@ -1,6 +1,12 @@
 export class TrackResult{
     trackingNumber: string;
     packageDetails : PackageDetails;
+    shipDate: string;
+    actualDelivery: string = "";
+    standardTransitTimeWindow: string = "";
+    events: Event[];
+    shipper: ShipperInformation;
+    recipient: RecipientInformation;
 }
 
 export class TrackResponse{
@@ -52,7 +58,7 @@ export class PackageDetails {
         count:  string= "";
         weight:   Weight ;
         dimension:   Dimension;
-
+        packaging: String = "";
 }
     
     export class PackagingDescription {
