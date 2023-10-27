@@ -78,8 +78,7 @@ export class ColisComponent implements OnInit{
   }
 
   updateColis(row: any) {
-    // Implement your update logic here using the service
-    // You might want to disable editing mode after updating
+    
     this.colisService.updateOne(row).subscribe(
       (updatedRow: any) => {
         console.log('Colis updated:', updatedRow);

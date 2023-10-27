@@ -1,36 +1,4 @@
-<div style="background: #0e4985; padding: 30px;">
-    <nz-row [nzGutter]="16">
-      <nz-col [nzSpan]="12">
-        <nz-card>
-          <nz-statistic
-            [nzValue]="(11.28 | number: '1.0-2')!"
-            [nzTitle]="'Colis Waiting'"
-            [nzPrefix]="prefixTplOne"
-            [nzSuffix]="'%'"
-            [nzValueStyle]="{ color: '#3F8600' }"
-          ></nz-statistic>
-          <ng-template #prefixTplOne><span nz-icon nzType="arrow-up"></span></ng-template>
-        </nz-card>
-      </nz-col>
-      <nz-col [nzSpan]="12">
-        <nz-card>
-          <nz-statistic
-            [nzValue]="(9.3 | number: '1.0-2')!"
-            [nzTitle]="'Colis Finished'"
-            [nzPrefix]="prefixTplTwo"
-            [nzSuffix]="'%'"
-            [nzValueStyle]="{ color: '#CF1322' }"
-          ></nz-statistic>
-          <ng-template #prefixTplTwo><span nz-icon nzType="arrow-down"></span></ng-template>
-        </nz-card>
-      </nz-col>
-    </nz-row>
-  </div>
-  
-  <div style="background: #ffffff; padding: 30px;">
-    <button type="button" class="btn-image white-text" mdbBtn mdbWavesEffect >Suivi Colis</button>
-  </div>
-  
+
   <div style="background: #ffffff; padding: 30px;">
       <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
         <input type="text" nz-input placeholder="Numero de Votre Colis" />
