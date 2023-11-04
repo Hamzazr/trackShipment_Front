@@ -24,13 +24,13 @@
         <div nz-col [nzSpan]="12">
             <nz-form-item class="above-select">
                 <nz-form-label [nzSm]="8" [nzXs]="24" >Origine Country</nz-form-label>
-              <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Country">
-                <nz-option  *ngFor="let country of countries" [nzLabel]="country.name" [nzValue]="country.code"></nz-option>
-              </nz-select>  
+              <mat-select-country appearance="outline" 
+                    
+                    (onCountrySelected)="onCountrySelected($event)">
+            </mat-select-country> 
             </nz-form-item>
-            <div *ngIf="selectedCountry">
-              Selected Country: {{ selectedCountry }}
-            </div>
+            
+            
         </div>
         <span nz-icon nzType="right-circle" nzTheme="twotone" style="position: absolute; align-self: center; margin-left: 330px; top: 300px; font-size: large;"></span>
         <div nz-col [nzSpan]="12">

@@ -66,7 +66,7 @@ import { NzCascaderModule } from 'ng-zorro-antd/cascader';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { RecipientComponent } from './components/recipient/recipient.component';
 import { TransporteurComponent } from './components/transporteur/transporteur.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 //import { NzFormLayoutType } from 'ng-zorro-antd/form';
@@ -76,6 +76,7 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 
 
@@ -141,6 +142,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzTagModule,
     NzSpaceModule,
     GoogleMapsModule,
+    MatSelectCountryModule.forRoot('de')
     
  
 

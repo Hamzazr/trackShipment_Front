@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { ColisService } from 'src/app/services/colis-Service/colis.service';
 import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
+import {Country} from '@angular-material-extensions/select-country';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class AjoutColisComponent implements OnInit {
 
   AddColis : FormGroup;
   AddRecipient : FormGroup;
+  
   phones: any[] = [];
   countries: any[] = [];
   selectedCountry: string = '';
@@ -23,10 +25,14 @@ export class AjoutColisComponent implements OnInit {
   constructor(
     private colisService : ColisService,
     private formBuilder : FormBuilder,
-    private router: Router
-  ){}
+    private router: Router,
+    
+  ){  }
 
   ngOnInit(): void {
+
+   
+
     this.AddColis = this.formBuilder.group({
 
       Tracking_Number : [null, [Validators.required]],
@@ -74,6 +80,11 @@ export class AjoutColisComponent implements OnInit {
     // }
   }
 
+
+  onCountrySelected($event: Country) {
+    console.log($event);
+  }
+
   onCountryChange(country: string): void {
     console.log('Selected Country:', country);
   }
@@ -118,5 +129,10 @@ courierOptions = [
 
 selectedCourier: string | null = null;
 
+//----------------------------------------------------------
+
 
 }
+
+
+

@@ -1,0 +1,56 @@
+<div nz-row style=" position: relative;">
+  <div style="margin-left: 22%; position: absolute; ">
+    <h1 nz-typography style="color: #1890ff;">Package tracking made easy, </h1>
+    <h1 nz-typography style="color: #1890ff; margin-left: 20px">you just need a tracking number!</h1>
+  </div>
+  <div style="background: #ffffff; padding: 30px; width: 80%; margin-left: 20%; margin-right:20%; margin-top: 10%; margin-bottom: 10%;">
+      <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input type="text" nz-input placeholder="Numero de Votre Colis" />
+      </nz-input-group>
+      <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
+      </ng-template>
+  </div>
+</div>
+  <nz-divider nzOrientation="left" nzText="Status : "></nz-divider>
+  <div nz-row [nzGutter]="[16, 24]">
+    <div nz-col class="gutter-row" [nzSpan]="14">
+      <div class="inner-box" style="background-color: white;">
+        <nz-page-header class="site-page-header">
+        <nz-avatar nz-page-header-avatar nzSrc="assets/PicTranspo/checkmark.png"></nz-avatar>
+        <!--title-->
+        <nz-page-header-title style="color: darkcyan; display: block;" *ngIf="shipmentStatus">{{ shipmentStatus.events[shipmentStatus.events.length - 1].derivedStatus }}</nz-page-header-title>
+        <nz-row style="margin-top: 30px;">
+          <nz-statistic nzTitle="Tracking Id : " nzValue="771473846105"></nz-statistic>
+        </nz-row>          
+        <!--subtitle-->
+        <!-- <nz-page-header-subtitle>This is a subtitle</nz-page-header-subtitle> -->
+  
+        <!--tags-->
+        <nz-page-header-content>
+            <nz-page-header-tags style="margin-left: 40px;">
+              <nz-tag [nzColor]="'blue'" *ngIf="shipmentStatus">{{ shipmentStatus.events[shipmentStatus.events.length - 1].date | date: 'yyyy-MM-dd HH:mm:ss'}}</nz-tag>
+            </nz-page-header-tags>
+        </nz-page-header-content>
+        <!--extra-->
+        <nz-page-header-content>
+          <nz-row nzType="flex" style="margin-top: 30px;">
+            <nz-statistic nzTitle="From" *ngIf="shipmentStatus" nzValue="{{ shipmentStatus.shipper.address.countryName }},{{ shipmentStatus.shipper.address.city }}"></nz-statistic>
+            <nz-statistic nzTitle="To" *ngIf="shipmentStatus" nzValue="{{ shipmentStatus.recipient.address.countryName }},{{ shipmentStatus.recipient.address.city }}" style="margin: 0 100px"></nz-statistic>
+          </nz-row>
+          
+          <nz-row style="margin-top: 30px;">
+            <nz-page-header-subtitle>Want updates on this shipment? Enter your email and we will do the rest!</nz-page-header-subtitle>
+            <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+              <input type="text" nz-input placeholder="Your Email" />
+            </nz-input-group>
+            <ng-template #suffixButton style="padding: 0%;">
+              <button nz-button nzType="primary" nzSize="large" nzSearch>Submit</button>
+            </ng-template>
+        </nz-row>
+        </nz-page-header-content>
+   
+      </nz-page-header> 
+      
+      </div> 
+  </div> 

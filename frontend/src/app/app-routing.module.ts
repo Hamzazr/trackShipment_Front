@@ -9,7 +9,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { ColisProfileComponent } from './components/colis-profile/colis-profile.component';
 import { AjoutColisComponent } from './components/ajout-colis/ajout-colis.component';
 import { authGuard } from './guards/auth.guard';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RecipientComponent } from './components/recipient/recipient.component';
 
 const routes: Routes = [
