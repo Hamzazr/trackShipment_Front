@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { TrackResult } from '../models/TrackResultResponse';
 import { TrackingRequest } from '../models/trackRequest';
 import { ColisService } from 'src/app/services/colis-Service/colis.service';
+import { AuthService } from 'src/app/services/authentification-Service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,10 +16,18 @@ export class DashboardComponent implements OnInit {
   shipmentStatus: TrackResult;
   trackingNumbers: TrackingRequest;
 
-  constructor(private trackingService: ColisService) {}
+  constructor(private router: Router,private trackingService: ColisService, private authService: AuthService) {}
 
   ngOnInit() {
     this.onTrackShipment();
+  }
+
+  navigateToRecipient() {
+    this.router.navigate(['/recipient']);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   onTrackShipment() {

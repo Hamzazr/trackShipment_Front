@@ -21,18 +21,42 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  // { 
-  //   path: '',
-  //   redirectTo: '/dashboard',
-  //   pathMatch: 'full' 
-  // },
+  { 
+    path: '',
+    component : HomePageComponent
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [authGuard]
+    children: [
+      {
+        path: 'colis',
+        children: [
+          {
+            path: '',
+            component: ColisComponent,
+            // canActivate: [authGuard]
+          },
+          {
+            path: ':id',
+            component: ColisProfileComponent,
+            // canActivate: [authGuard]
+          },
+          
+        ],
+      },
+
+      {
+        path: 'recipient',
+        component: RecipientComponent,
+        // canActivate: [authGuard]
+      }
+
+    ]
+    // canActivate: [authGuard]
   },
   {
-    path: 'home-page',
+    path: '',
     component: HomePageComponent,
     canActivate: [authGuard]
 
@@ -61,31 +85,26 @@ const routes: Routes = [
   {
     path: 'createColis',
     component: AjoutColisComponent,
-    canActivate: [authGuard]
+    // canActivate: [authGuard]
   },
-  
   {
     path: 'colis',
     children: [
       {
         path: '',
         component: ColisComponent,
-        canActivate: [authGuard]
+        // canActivate: [authGuard]
       },
       {
         path: ':id',
         component: ColisProfileComponent,
-        canActivate: [authGuard]
+        // canActivate: [authGuard]
       },
       
-    ]
-    
+    ],
   },
-  {
-    path: 'recipient',
-    component: RecipientComponent,
-    canActivate: [authGuard]
-  }
+
+
   
 ];
 
