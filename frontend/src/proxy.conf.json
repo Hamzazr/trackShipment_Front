@@ -3,5 +3,11 @@
         "target": "http://localhost:3000",
         "secure": false,
         "changeOrigin": true
-    }
+    },
+
+    "/oauth": {
+        "target": "https://apis-sandbox.fedex.com",
+        "secure": false,
+        "changeOrigin": true
+      }
 }

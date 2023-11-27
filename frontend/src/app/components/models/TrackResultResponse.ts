@@ -1,12 +1,12 @@
 export class TrackResult{
     trackingNumber: string;
     packageDetails : PackageDetails;
-    shipDate: string;
+    shippingDate: string;
     actualDelivery: string = "";
     standardTransitTimeWindow: string = "";
     events: Event[];
-    shipper: ShipperInformation;
-    recipient: RecipientInformation;
+    shipperAddress: string = "";
+    recipientAddress: string = "";
 }
 
 export class TrackResponse{
@@ -115,6 +115,3 @@ export class LastUpdatedDestination {
 export class LocationContactAndAddress {
     address : ScanLocation
 }
-
-
-

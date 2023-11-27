@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -17,7 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { MatCardModule } from '@angular/material/card';
@@ -77,6 +77,8 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
+import { ColisNotificationComponent } from './components/colis-notification/colis-notification.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -90,9 +92,10 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
 
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, RegisterComponent, UsersComponent, UserProfileComponent, ColisComponent, 
+    AppComponent, LoginComponent, RegisterComponent, UsersComponent, UserProfileComponent, ColisComponent,
     HomePageComponent, ColisProfileComponent, AjoutColisComponent, RecipientComponent, TransporteurComponent,
-    DashboardComponent
+    DashboardComponent,
+    ColisNotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -107,10 +110,10 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     DragDropModule,
     ScrollingModule,
     FormsModule,
-        
+    ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
-    
+
     NzButtonModule,
     NzLayoutModule,
     NzBreadCrumbModule,
@@ -142,25 +145,24 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzTagModule,
     NzSpaceModule,
     GoogleMapsModule,
-    MatSelectCountryModule.forRoot('de')
-    
- 
+    MatSelectCountryModule.forRoot('de'),
+    MatDialogModule,
+    MatFormFieldModule,
+    NzModalModule
 
-    
-
-
-
-   
   ],
-  providers: [JwtHelperService, 
-              { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, 
-              { 
-                provide:HTTP_INTERCEPTORS,
-                useClass: JwtInterceptor,
-                multi: true
-              },
-              { provide: NZ_ICONS, useValue: icons }, 
-              { provide: NZ_I18N, useValue: en_US }],
+  providers: [JwtHelperService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
+    { provide: NZ_ICONS, useValue: icons },
+    { provide: NZ_I18N, useValue: en_US },
+
+  ],
+    
   bootstrap: [AppComponent]
 })
 export class AppModule { }

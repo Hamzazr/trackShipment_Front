@@ -1,0 +1,37 @@
+<form class="m-4" [formGroup]="notificationForm" (ngSubmit)="onSubmit()">
+  <p class="h1">Colis Notifications</p>
+
+
+  <div class="form-group">
+    <input type="name" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp"
+      placeholder="Your Name">
+  </div>
+  <div class="form-group">
+    <input type="email" formControlName="email" class="form-control" id="email" placeholder="Your Email">
+  </div>
+  <div class="custom-control custom-checkbox form-group">
+    <input type="checkbox" formControlName="currentResultControl" class="custom-control-input" id="c0">
+    <label class="custom-control-label" for="c0">Send the current status</label>
+  </div>
+
+  <div class="custom-control custom-checkbox form-group">
+    <input type="checkbox" formControlName="notifyOnDeliveryControl" class="custom-control-input" id="c1">
+    <label class="custom-control-label" for="c1">FedEx has received the package</label>
+  </div>
+  <div class="custom-control custom-checkbox form-group">
+    <input type="checkbox" formControlName="notifyOnTenderedControl" class="custom-control-input"
+      id="c2">
+    <label class="custom-control-label" for="c2">Delivery has been made</label>
+  </div>
+  <div class="custom-control custom-checkbox form-group">
+    <input type="checkbox" formControlName="notifyOnExceptionControl" class="custom-control-input" id="c3">
+    <label class="custom-control-label" for="c3">A delivery exception has occurred</label>
+  </div>
+  <div class="custom-control custom-checkbox form-group">
+    <input type="checkbox" formControlName="notifyOnEstimatedDeliveryDateChangeControl" class="custom-control-input" id="c4">
+    <label class="custom-control-label" for="c4">Estimated delivery updates</label>
+  </div>
+
+
+  <button class="btn btn-primary" type="submit" [disabled]="notificationForm.invalid">Save</button>
+</form>
