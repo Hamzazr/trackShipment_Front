@@ -4,20 +4,14 @@ import { User } from "./user.interface";
 
 export interface Colis {
     id_colis?: number;
-
-    suivi_numero?: number;
-
-    statut?: string;
-
-    description?: string;
-
-    emplacement?: string;
-
+    trackingNumber: String;
+    countryOrigin: String;
+    countryDestination: String;
+    title: String;
+    orderNumber: String;
     transporteur?: Transporteur;
-
     recipient?: Recipient;
-
-    sender?: User;
+    user: User;
 }
 
 export interface Meta {

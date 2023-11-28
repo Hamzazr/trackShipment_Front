@@ -80,7 +80,7 @@ export class ColisNotificationService {
 
     const payload = {
       "senderContactName": data.senderContactName,
-      "senderContactEmail": data.senderContactEmail,
+      "senderEMailAddress": data.senderContactEmail,
       "trackingEventNotificationDetail": {
         "trackingNotifications": [
           {
@@ -91,7 +91,7 @@ export class ColisNotificationService {
               },
               "emailDetail": {
                 "emailAddress":email,
-                "name": ""
+                "name": "Unknown"
               },
               "notificationType": "HTML"
             },
@@ -105,24 +105,8 @@ export class ColisNotificationService {
       },
 
     };
-    // if (!token) {
-    //   throw new Error('JWT token not found.');
-    // }
 
-    // const headers = new HttpHeaders({
-    //   'Authorization': `Bearer ${token}` // Use the actual JWT token
-    // });
-
-    const token =  await this.authToken();
-    console.log("token ",token)
-
-    await this.http.post<any>('https://apis-sandbox.fedex.com/track/v1/notifications', payload, {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-locale': 'en_US',
-        Authorization: `Bearer ${token}`
-      },
-    });
+    this.http.post<any>('api/colis/notification/send', payload, {}).subscribe();
 
   }
 

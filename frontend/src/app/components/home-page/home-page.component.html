@@ -1,226 +1,314 @@
 <body>
-  <!-- Navigation-->
-  <nav class="navbar navbar-light bg-light static-top">
-      <div class="container">
-          <a class="navbar-brand" href="#!">Start Bootstrap</a>
-          <a class="btn btn-primary" href="#signup">Sign Up</a>
-      </div>
-  </nav>
-  <!-- Masthead-->
-  <header class="masthead">
-      <div class="container position-relative">
-          <div class="row justify-content-center">
-              <div class="col-xl-6">
-                  <div class="text-center text-white">
-                      <!-- Page heading-->
-                      <h1 class="mb-5">Generate more leads with a professional landing page!</h1>
-                      <!-- Signup form-->
-                      <!-- * * * * * * * * * * * * * * *-->
-                      <!-- * * SB Forms Contact Form * *-->
-                      <!-- * * * * * * * * * * * * * * *-->
-                      <!-- This form is pre-integrated with SB Forms.-->
-                      <!-- To make this form functional, sign up at-->
-                      <!-- https://startbootstrap.com/solution/contact-forms-->
-                      <!-- to get an API token!-->
-                      <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                          <!-- Email address input-->
-                          <div class="row">
-                              <div class="col">
-                                  <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required,email" />
-                                  <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                                  <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
+    <!-- Navigation-->
+
+    <div class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+              <!-- Your logo goes here -->
+              <img src="path/to/your/logo.png" alt="Logo" class="logo">
+            </a>
+          
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <button nz-button nzType="primary" nzShape="round">
+                        <a class="nav-link text-light" href="#">Sign Up</a>
+                    </button>
+                </li>
+              </ul>
+            </div>
+          </nav>
+    </div>
+
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <div class="text-center text-white">
+                        <!-- Page heading-->
+                        <h1 class="mb-5" style="color: white;">Package tracking made easy, you just need a tracking
+                            number!</h1>
+                        <form class="form-subscribe mb-2">
+                            <!-- Email address input-->
+                            <div class="input-group mb-3">
+                                <input class="form-control" [formControl]="controlTrackNumber" id="TrackingNumber"
+                                type="text" placeholder="Tracking Number" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                  <button type="button" class="btn btn-primary"
+                                  style="background-color: crimson; border: none; " id="searchButton" type="submit"
+                                  (click)="onSearch()">Search</button>
+                                </div>
                               </div>
-                              <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
-                          </div>
-                          <!-- Submit success message-->
-                          <!---->
-                          <!-- This is what your users will see when the form-->
-                          <!-- has successfully submitted-->
-                          <div class="d-none" id="submitSuccessMessage">
-                              <div class="text-center mb-3">
-                                  <div class="fw-bolder">Form submission successful!</div>
-                                  <p>To activate this form, sign up at</p>
-                                  <a class="text-white" href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+
+                              <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                  <button class="btn btn-outline-secondary" type="button">Button</button>
+                                </div>
                               </div>
-                          </div>
-                          <!-- Submit error message-->
-                          <!---->
-                          <!-- This is what your users will see when there is-->
-                          <!-- an error submitting the form-->
-                          <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                      </form>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </header>
-  <!-- Icons Grid-->
-  <section class="features-icons bg-light text-center">
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-4">
-                  <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                      <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
-                      <h3>Fully Responsive</h3>
-                      <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
-                  </div>
-              </div>
-              <div class="col-lg-4">
-                  <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                      <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
-                      <h3>Bootstrap 5 Ready</h3>
-                      <p class="lead mb-0">Featuring the latest build of the new Bootstrap 5 framework!</p>
-                  </div>
-              </div>
-              <div class="col-lg-4">
-                  <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                      <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
-                      <h3>Easy to Use</h3>
-                      <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
-  <!-- Image Showcases-->
-  <section class="showcase">
-      <div class="container-fluid p-0">
-          <div class="row g-0">
-              <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
-              <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                  <h2>Fully Responsive Design</h2>
-                  <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
-              </div>
-          </div>
-          <div class="row g-0">
-              <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-2.jpg')"></div>
-              <div class="col-lg-6 my-auto showcase-text">
-                  <h2>Updated For Bootstrap 5</h2>
-                  <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 5 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 5!</p>
-              </div>
-          </div>
-          <div class="row g-0">
-              <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-3.jpg')"></div>
-              <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                  <h2>Easy to Use & Customize</h2>
-                  <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
-              </div>
-          </div>
-      </div>
-  </section>
-  <!-- Testimonials-->
-  <section class="testimonials text-center bg-light">
-      <div class="container">
-          <h2 class="mb-5">What people are saying...</h2>
-          <div class="row">
-              <div class="col-lg-4">
-                  <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                      <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-1.jpg" alt="..." />
-                      <h5>Margaret E.</h5>
-                      <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
-                  </div>
-              </div>
-              <div class="col-lg-4">
-                  <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                      <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-2.jpg" alt="..." />
-                      <h5>Fred S.</h5>
-                      <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
-                  </div>
-              </div>
-              <div class="col-lg-4">
-                  <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                      <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-3.jpg" alt="..." />
-                      <h5>Sarah W.</h5>
-                      <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
-  <!-- Call to Action-->
-  <section class="call-to-action text-white text-center" id="signup">
-      <div class="container position-relative">
-          <div class="row justify-content-center">
-              <div class="col-xl-6">
-                  <h2 class="mb-4">Ready to get started? Sign up now!</h2>
-                  <!-- Signup form-->
-                  <!-- * * * * * * * * * * * * * * *-->
-                  <!-- * * SB Forms Contact Form * *-->
-                  <!-- * * * * * * * * * * * * * * *-->
-                  <!-- This form is pre-integrated with SB Forms.-->
-                  <!-- To make this form functional, sign up at-->
-                  <!-- https://startbootstrap.com/solution/contact-forms-->
-                  <!-- to get an API token!-->
-                  <form class="form-subscribe" id="contactFormFooter" data-sb-form-api-token="API_TOKEN">
-                      <!-- Email address input-->
-                      <div class="row">
-                          <div class="col">
-                              <input class="form-control form-control-lg" id="emailAddressBelow" type="email" placeholder="Email Address" data-sb-validations="required,email" />
-                              <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:required">Email Address is required.</div>
-                              <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:email">Email Address Email is not valid.</div>
-                          </div>
-                          <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
-                      </div>
-                      <!-- Submit success message-->
-                      <!---->
-                      <!-- This is what your users will see when the form-->
-                      <!-- has successfully submitted-->
-                      <div class="d-none" id="submitSuccessMessage">
-                          <div class="text-center mb-3">
-                              <div class="fw-bolder">Form submission successful!</div>
-                              <p>To activate this form, sign up at</p>
-                              <a class="text-white" href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                          </div>
-                      </div>
-                      <!-- Submit error message-->
-                      <!---->
-                      <!-- This is what your users will see when there is-->
-                      <!-- an error submitting the form-->
-                      <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </section>
-  <!-- Footer-->
-  <footer class="footer bg-light">
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                  <ul class="list-inline mb-2">
-                      <li class="list-inline-item"><a href="#!">About</a></li>
-                      <li class="list-inline-item">⋅</li>
-                      <li class="list-inline-item"><a href="#!">Contact</a></li>
-                      <li class="list-inline-item">⋅</li>
-                      <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                      <li class="list-inline-item">⋅</li>
-                      <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
-                  </ul>
-                  <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2023. All Rights Reserved.</p>
-              </div>
-              <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-                  <ul class="list-inline mb-0">
-                      <li class="list-inline-item me-4">
-                          <a href="#!"><i class="bi-facebook fs-3"></i></a>
-                      </li>
-                      <li class="list-inline-item me-4">
-                          <a href="#!"><i class="bi-twitter fs-3"></i></a>
-                      </li>
-                      <li class="list-inline-item">
-                          <a href="#!"><i class="bi-instagram fs-3"></i></a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-  </footer>
-  <!-- Bootstrap core JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Core theme JS-->
-  <script src="js/scripts.js"></script>
-  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-  <!-- * *                               SB Forms JS                               * *-->
-  <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+                        </form>
+
+                        <div class="card mt-2 p-2" *ngIf="shipmentStatus != null">
+
+                            <div class="container">
+
+                                <div class="row text-left align-items-start">
+
+                                    <div class="row col-sm  align-items-start">
+
+                                        <div class="col-sm mt-2 mb-4">
+                                            DELIVERY STATUS
+                                            <p class="h2">{{shipmentStatus.events[shipmentStatus.events.length -
+                                                1].derivedStatus}}</p>
+                                            <nz-page-header-content>
+                                                <nz-page-header-tags>
+                                                    <nz-tag class="p-1 mb-1" [nzColor]="'blue'"
+                                                        *ngIf="shipmentStatus">{{
+                                                        shipmentStatus.events[shipmentStatus.events.length - 1].date |
+                                                        date: 'yyyy-MM-dd
+                                                        HH:mm:ss'}}</nz-tag>
+                                                </nz-page-header-tags>
+                                            </nz-page-header-content>
+                                        </div>
+
+                                        <div class="col-sm mt-2">
+                                            TRACKING ID
+                                            <p class="h4">{{shipmentStatus.trackingNumber}}</p>
+                                        </div>
+
+                                        <br />
+                                        <br />
+                                        <br />
+
+                                        <nz-page-header-content class="mb-6 mt-6">
+                                            <nz-row nzType="flex">
+                                                <nz-statistic nzTitle="From" *ngIf="shipmentStatus"
+                                                    nzValue="{{ shipmentStatus.shipperAddress }}"></nz-statistic>
+                                                <nz-statistic nzTitle="To" *ngIf="shipmentStatus"
+                                                    nzValue="{{ shipmentStatus.recipientAddress }}"></nz-statistic>
+                                            </nz-row>
+                                        </nz-page-header-content>
+
+                                        <br />
+                                        <br />
+                                        <br />
+
+                                        <div class="mt-4 mb-4">
+                                            <nz-page-header-content>
+
+                                            <nz-row style="margin-top: 30px;">
+                                                <nz-page-header-subtitle>Want updates on this shipment? Enter your email and we will do the
+                                                  rest!</nz-page-header-subtitle>
+                                                <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton" formControlName = "controlEmail">
+                                                  <input type="text" nz-input placeholder="Your Email" />
+                                                </nz-input-group>
+                                                <ng-template #suffixButton style="padding: 0%;">
+                                                  <button nz-button nzType="primary" nzSize="large" (click)="sendNotif()" nzSearch>Submit</button>
+                                                </ng-template>
+                                              </nz-row>
+                                              </nz-page-header-content>
+                
+                                        
+                                        </div>
+                                        
+                                        <br />
+                                        <br />
+                                        <br />
+
+                                        <div class="d-flex align-items-start flex-column mt-8">
+
+                                            <!-- Shipment overview -->
+                                            <nz-page-header class="site-page-header">
+                                                <nz-avatar [nzShape]="'square'" nz-page-header-avatar
+                                                    nzSrc="assets/PicTranspo/approval.png"></nz-avatar>
+                                                <nz-page-header-title
+                                                    style="color: rgb(0, 0, 0); display: block;">Shipment
+                                                    overview</nz-page-header-title>
+                                            </nz-page-header>
+                                            <table class="table table-striped ml-2">
+
+                                                <!-- Tracking Number -->
+                                                <tr>
+                                                    <td class="font-weight-bold">TRACKING NUMBER</td>
+                                                    <td>{{ shipmentStatus.trackingNumber }}</td>
+                                                </tr>
+
+                                                <!-- Ship Date -->
+                                                <tr>
+                                                    <td class="font-weight-bold">SHIP DATE</td>
+                                                    <td>
+                                                        {{ shipmentStatus.shippingDate | date: 'yyyy-MM-dd HH:mm:ss'
+                                                        }}
+                                                    </td>
+                                                </tr>
+
+                                                <!-- Standard Transit -->
+                                                <tr>
+                                                    <td class="font-weight-bold">STANDARD TRANSIT</td>
+                                                    <td>
+                                                        {{ shipmentStatus.standardTransitTimeWindow | date:
+                                                        'yyyy-MM-dd
+                                                        HH:mm:ss' }}
+                                                    </td>
+                                                </tr>
+
+                                                <!-- Actual Delivery -->
+                                                <tr>
+                                                    <td class="font-weight-bold">ACTUAL DELIVERY</td>
+                                                    <td>
+                                                        {{ shipmentStatus.actualDelivery | date: 'yyyy-MM-dd
+                                                        HH:mm:ss'
+                                                        }}
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+
+                                            <!-- Packege Detail -->
+                                            <nz-page-header class="site-page-header">
+                                                <nz-avatar [nzShape]="'square'" nz-page-header-avatar
+                                                    nzSrc="assets/PicTranspo/package.png"></nz-avatar>
+                                                <nz-page-header-title
+                                                    style="color: rgb(0, 0, 0); display: block;">Package
+                                                    Details</nz-page-header-title>
+                                            </nz-page-header>
+                                            <table class="table table-striped ml-2">
+
+                                                <!-- Count -->
+                                                <tr>
+                                                    <td class="font-weight-bold">Count</td>
+                                                    <td>{{ shipmentStatus?.packageDetails?.count }}</td>
+                                                </tr>
+
+                                                <!-- Weight -->
+                                                <tr>
+                                                    <td class="font-weight-bold">Weight</td>
+                                                    <td>
+                                                        {{ shipmentStatus?.packageDetails?.weight?.value }} {{
+                                                        shipmentStatus?.packageDetails?.weight?.unit }}
+                                                    </td>
+                                                </tr>
+
+                                                <!-- Dimension -->
+                                                <tr>
+                                                    <td class="font-weight-bold">Dimension</td>
+                                                    <td>
+                                                        {{ shipmentStatus?.packageDetails?.dimension?.length }} x
+                                                        {{ shipmentStatus?.packageDetails?.dimension?.width }} x
+                                                        {{ shipmentStatus?.packageDetails?.dimension?.height }}
+                                                        {{ shipmentStatus?.packageDetails?.dimension?.units }}
+                                                    </td>
+                                                </tr>
+
+                                                <!-- Packaging -->
+                                                <tr>
+                                                    <td class="font-weight-bold">Packaging</td>
+                                                    <td>{{ shipmentStatus?.packageDetails?.packaging }}</td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col">
+                                        <div>
+                                            <div class="inner-box">
+                                                <nz-steps [nzCurrent]="this.shipmentStatus.events.length" nzProgressDot
+                                                    nzDirection="vertical">
+                                                    <nz-step *ngFor="let event of shipmentStatus.events; let i = index"
+                                                        nzTitle="{{ event.derivedStatus }}"
+                                                        nzDescription="{{ event.eventDescription }}">
+                                                    </nz-step>
+                                                </nz-steps>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <!-- Invesible------------------------------------------------------------>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Icons Grid------------------------------------------------------------>
+    <div class="nav1">
+        <table id="table_nav1">
+            <tr>
+                <td>
+                    <h1 style="color: #FFF; email-align: center;">BIENVENUE AU TRACK SHIP</h1>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="color: #FFF; text-align: center;">L’Association Sportive (MAROCES) compte parmi les
+                        grandes associations sportives du Maroc.
+                        Créé en 2002, il est situé en plein centre de MARRAKECH.
+                        Les principales activités du club sont le basketball, la natation, aérobic, fitness.
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;"><button id="readMore" value="Read More">Read More</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ------------------------------------------------------ -->
+    <div class="nav2">
+        <table id="table_coach">
+            <tr>
+                <td style="text-align: center; padding: 0px 60px 0px 60px;">
+                    <div class="container2">
+                        <img src="../../../assets/PicTranspo/ae071b8fadd7cd3353ffb13b139959c9.jpg" alt="Avatar"
+                            class="image">
+                        <div class="overlay2">
+                            <button id="ENTRAINEUR">
+                                <a style="color: white; font-family: 'Poppins' sans-serif;" href="">FAST</a>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center; padding: 0px 60px 0px 60px;">
+                    <div class="container2">
+                        <img class="image" src="../../../assets/PicTranspo/ae071b8fadd7cd3353ffb13b139959c9.jpg">
+                        <div class="overlay2">
+                            <button id="ENTRAINEUR">
+                                <a href="" style="color: white; font-family: 'Poppins' sans-serif;">EFICACE</a>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center; padding: 0px 60px 0px 60px;">
+                    <div class="container2">
+                        <img class="image" src="../../../assets/PicTranspo/ae071b8fadd7cd3353ffb13b139959c9.jpg">
+                        <div class="overlay2">
+                            <button id="ENTRAINEUR">
+                                <a href="" style="color: white; font-family: 'Poppins' sans-serif;">GARENTIE</a>
+                            </button>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+
 </body>

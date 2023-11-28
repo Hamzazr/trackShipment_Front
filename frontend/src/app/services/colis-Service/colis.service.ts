@@ -8,7 +8,7 @@ import { TrackResponse, TrackResult } from 'src/app/components/models/TrackResul
 export const JWT_NAME = 'JWT_SECRET';
 
 export interface ColisData {
-  items: readonly any[],
+  items: any[],
   meta: {
     totalItems: number;
     itemCount: number;
@@ -29,7 +29,15 @@ export interface ColisData {
 })
 export class ColisService {
 
+  private jsonUrl = 'assets/country.json';
+  private jsonUrl2 = 'assets/countryPhone.json';
+  private baseUrl = '/api/tracking';
+
   constructor(private http: HttpClient) { } 
+
+  findOne(colisId: number): Observable<Colis>{
+    return this.http.get<Colis>('/api/colis/' + colisId, );
+  }
   
   findAll(page: number, size: number): Observable<ColisData>{
     let params = new HttpParams();
@@ -52,8 +60,21 @@ export class ColisService {
     return this.http.get<ColisPageable>('/api/colis', {params});
   }
 
+  deleteOne(id_colis : number) : Observable<Colis> {
+    const token = localStorage.getItem(JWT_NAME);
+
+    if (!token) {
+      throw new Error('JWT token not found.');
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}` // Use the actual JWT token
+    });
+    return this.http.delete<Colis>('api/colis/'+ id_colis, {headers})
+  }
+
   updateOne(colis : Colis):Observable<Colis>{
-    return this.http.put('api/colis/'+ colis.id_colis, colis)
+    return this.http.put<Colis>('api/colis/'+ colis.id_colis, colis)
   }
 
   post(colis: Colis): Observable<Colis> {
@@ -66,14 +87,9 @@ export class ColisService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}` // Use the actual JWT token
     });
-    
     return this.http.post<Colis>('/api/colis', colis, {headers});
+
   }
-
-//-----------------------
-
-  private jsonUrl = 'assets/country.json';
-  private jsonUrl2 = 'assets/countryPhone.json';
 
   loadJsonData(): Observable<any> {
     return this.http.get(this.jsonUrl);
@@ -83,23 +99,11 @@ export class ColisService {
     return this.http.get(this.jsonUrl2);
   }
 
-  //----------------------- Detaile Colis Page -----------------------------
-  private baseUrl = '/api/tracking';
-  private data = {
-    "includeDetailedScans": false,
-    "trackingInfo": [
-        {
-            "trackingNumberInfo": {
-                "trackingNumber": "394940543544"
-            }
-        }
-    ]
-}
-  trackShipment(trackingNumbers: TrackingRequest): Observable<TrackResponse> {
+  trackShipment(data: any): Observable<TrackResponse> {
     try{
       return this.http.post<TrackResponse>(
         `${this.baseUrl}/track-shipment`,
-        this.data,
+        data,
       );
     }catch(error){
       console.log('error',error)

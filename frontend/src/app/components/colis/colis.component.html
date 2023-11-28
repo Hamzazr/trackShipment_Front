@@ -1,62 +1,63 @@
-<button nz-button nzType="primary" type="button" (click)="btnClick()">Ajouter</button>
-<nz-table #nestedTable [nzData]="dataSource.items" [nzPageSize]="10">
+<button nz-button nzType="primary" type="button" (click)="showAddColis()">Ajouter</button>
+<nz-modal [(nzVisible)]="isColisAddVisible" nzWidth=80% nzHeight=80% nzTitle="" (nzOnCancel)="addColisCancel()">
+  <ng-container *nzModalContent>
+    <app-ajout-colis (onColisCreated)="onColisCreated($event)"></app-ajout-colis>
+  </ng-container>
+  <div *nzModalFooter>
+  </div>
+</nz-modal>
+
+<div class="card bg-dark">
+  <nz-table #nestedTable [nzBordered]="true" [nzData]="dataSource.items" [nzTotal]="dataSource.meta.totalItems"
+    [nzLoading]="dataSource == null" [nzShowPagination]="false">
     <thead>
-      <tr> 
-        <th></th>
-        <th>Id</th>
-        <th>SuiviNumero</th>
-        <th>Statut</th>
-        <th>Discription</th>
-        <th>emplacement</th> 
-        <th>Transporteur</th>
-        <th>Sender</th>
+      <tr>
+        <th>Colis</th>
+        <th>Status</th>
+        <th>Origin</th>
+        <th>Destination</th>
         <th>Recipient</th>
-        <!-- <th>Edit</th>
-        <th>Delete</th> -->
+        <th>Coutier</th>
       </tr>
     </thead>
     <tbody>
-      <ng-template ngFor let-row [ngForOf]="dataSource.items">
-        <tr>
-          <td nz-expand [(nzExpand)]="row.expand"></td>
-          <td>{{ row.id_colis }}</td>
-          <!-- <td><input [(ngModel)]="row.numero" [disabled]="!row.editing" /></td> -->
-          <!-- <td>
-            <div class="editable-cell" [hidden]="editId === row.id" (click)="startEdit(row.id)">
-              {{ row.numero }}
-            </div>
-            <input [hidden]="editId !== row.id" type="text" nz-input [(ngModel)]="row.numero" (blur)="stopEdit()" />
-          </td> -->
-          <td> {{ row.suivi_numero }} </td>
-          <td style="width: 200px;">
-            <nz-descriptions>
-                <nz-descriptions-item nzTitle="{{ row.statut }}" >
-                  <nz-badge nzStatus="processing" ></nz-badge>
-                </nz-descriptions-item> 
-            </nz-descriptions>
-          </td>
-          <td>{{ row.description }}</td>
-          <td>{{ row.emplacement }}</td>
-          <td>{{ row.transporteur }}</td>
-          <td>{{ row.sender.last_name }}</td>
-          <td>{{ row.recipient }}</td>
-          
-          <td>
-            <span nz-icon nzType="edit" nzTheme="twotone" (click)="toggleEdit(row)"></span>
-          </td>
+      <tr *ngFor="let row of dataSource.items">
+        <td (click)="openColis(row)">
+          <h6>{{ row.trackingNumber }}</h6>
+          <p style="color: gray;"><small>{{ row.title }}</small></p>
+        </td>
+        <td>
+          <nz-spin nzSimple *ngIf="!row?.status"></nz-spin>
+          <nz-tag *ngIf="row.status">{{row.status}}</nz-tag>
 
-          <td (click)="navigateToProfile(row.id)">
-            <span nz-icon nzType="delete" nzTheme="twotone"></span>
-          </td>
-        </tr>
-      </ng-template>
+        </td>
+        <td>{{ row.countryOrigin }}</td>
+        <td>{{ row.countryDestination }}</td>
+        <td>{{ row.recipient.name }}</td>
+        <td>{{ row.transporteur.nom }}</td>
+
+        <td>
+          <span nz-icon nzType="edit" nzTheme="twotone" (click)="toggleEdit(row)"></span>
+          <!-- <nz-modal *ngIf = "isColisUpdateVisible" [(nzVisible)]="isColisUpdateVisible" nzWidth=80% nzHeight=80% nzTitle="" (nzOnCancel)="updateColisOk()">
+            <ng-container *nzModalContent>
+              <app-ajout-colis 
+              [colisToEdit] = "row"
+              (onColisUpdated)="onColisUpdated($event)"
+              ></app-ajout-colis>
+            </ng-container>
+            <div *nzModalFooter>
+            </div>
+          </nz-modal> -->
+        </td>
+
+        <td (click)="deleteColis(row)">
+          <span nz-icon nzType="delete" nzTheme="twotone"></span>
+        </td>
+      </tr>
+
     </tbody>
   </nz-table>
-  <nz-pagination 
-      *ngIf="dataSource.meta"
-      [nzTotal]="dataSource.meta.totalItems"
-      [nzPageSize]="dataSource.meta.itemsPerPage"
-      [nzPageSizeOptions]="[5, 10, 25, 100]"
-      (nzPageIndexChange)="onPaginateChange($event)"
-  ></nz-pagination>
-
+  <nz-pagination *ngIf="dataSource.meta" [nzTotal]="dataSource.meta.totalItems"
+    [nzPageSize]="dataSource.meta.itemsPerPage" [nzPageSizeOptions]="[5, 10, 25, 100]"
+    (nzPageIndexChange)="onPaginateChange($event)"></nz-pagination>
+</div>

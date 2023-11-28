@@ -1,4 +1,4 @@
-<div class="cadreR">
+<div class="cadreR" *ngIf="!showShimmer">
   <!-- <nz-steps [nzCurrent]="1" nzProgressDot>
       <nz-step nzTitle="Finished" nzDescription="This is a description."></nz-step>
       <nz-step nzTitle="In Progress" nzDescription="This is a description."></nz-step>
@@ -14,6 +14,7 @@
   </nz-modal>
 
   <nz-divider nzOrientation="left" nzText="Status : "></nz-divider>
+
   <div nz-row [nzGutter]="[16, 24]">
     <div nz-col class="gutter-row" [nzSpan]="14">
       <div class="inner-box" style="background-color: white;">
@@ -47,23 +48,23 @@
             <nz-row style="margin-top: 30px;">
               <nz-page-header-subtitle>Want updates on this shipment? Enter your email and we will do the
                 rest!</nz-page-header-subtitle>
-              <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton" [(ngModel)]="email">
+              <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton" (keyup)="onKey($event)">
                 <input type="text" nz-input placeholder="Your Email" />
               </nz-input-group>
               <ng-template #suffixButton style="padding: 0%;">
                 <button nz-button nzType="primary" nzSize="large" (click)="sendNotif()" nzSearch>Submit</button>
               </ng-template>
             </nz-row>
-
-            <button nz-button nzType="primary" (click)="showModal()" mat-mini-fab>Edit Notification Setting</button>
+            <button class = "mt-1" nz-button nzType="default" (click)="showModal()">
+              <span nz-icon nzType="setting"></span>
+              Edit Notification Setting
+            </button>
 
           </nz-page-header-content>
 
         </nz-page-header>
       </div>
     </div>
-
-
 
     <div nz-row [nzGutter]="[16, 24]">
       <div nz-col class="gutter-row" [nzSpan]="20" style="margin-top: 90px;">
@@ -78,92 +79,119 @@
       </div>
     </div>
 
-    <nz-divider nzOrientation="left" nzText="Shipment facts : "></nz-divider>
     <div nz-row [nzGutter]="[16, 24]">
       <div nz-col class="gutter-row" [nzSpan]="24">
         <div class="inner-box" style="background-color: white;">
+
+          <!-- Shipment overview -->
           <nz-page-header class="site-page-header">
-
-            <!-- Shipment overview -->
-
-            <nz-avatar nz-page-header-avatar nzSrc="assets/PicTranspo/approval.png"></nz-avatar>
+            <nz-avatar [nzShape]="'square'" nz-page-header-avatar nzSrc="assets/PicTranspo/approval.png"></nz-avatar>
             <nz-page-header-title style="color: rgb(0, 0, 0); display: block;">Shipment overview</nz-page-header-title>
-            <nz-page-header-content style="margin-left: 5%; margin-right: 20%;">
-              <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
-                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">TRACKING NUMBER</div>
-                <div nz-col nzFlex="2" *ngIf="shipmentStatus"> {{shipmentStatus.trackingNumber}} </div>
-              </div>
-              <div nz-row style=" width: 900px;">
-                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">SHIP DATE</div>
-                <div nz-col nzFlex="2" *ngIf="shipmentStatus"> {{ shipmentStatus.shippingDate | date:
-                  'yyyy-MM-ddHH:mm:ss'}} </div>
-              </div>
-              <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
-                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Standard Transit</div>
-                <div nz-col nzFlex="2" *ngIf="shipmentStatus"> {{ shipmentStatus.standardTransitTimeWindow | date:
-                  'yyyy-MM-dd HH:mm:ss'}} </div>
-              </div>
-              <div nz-row style=" width: 900px;">
-                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">ACTUAL DELIVERY</div>
-                <div nz-col nzFlex="2" *ngIf="shipmentStatus"> {{ shipmentStatus.actualDelivery | date: 'yyyy-MM-dd
-                  HH:mm:ss'}} </div>
-              </div>
-
-            </nz-page-header-content>nz-page-header-content>
           </nz-page-header>
+          <table class="table table-striped ml-2">
+
+            <!-- Tracking Number -->
+            <tr>
+              <td class="font-weight-bold">TRACKING NUMBER</td>
+              <td>{{ shipmentStatus.trackingNumber }}</td>
+            </tr>
+
+            <!-- Ship Date -->
+            <tr>
+              <td class="font-weight-bold">SHIP DATE</td>
+              <td>
+                {{ shipmentStatus.shippingDate | date: 'yyyy-MM-dd HH:mm:ss'
+                }}
+              </td>
+            </tr>
+
+            <!-- Standard Transit -->
+            <tr>
+              <td class="font-weight-bold">STANDARD TRANSIT</td>
+              <td>
+                {{ shipmentStatus.standardTransitTimeWindow | date:
+                'yyyy-MM-dd
+                HH:mm:ss' }}
+              </td>
+            </tr>
+
+            <!-- Actual Delivery -->
+            <tr>
+              <td class="font-weight-bold">ACTUAL DELIVERY</td>
+              <td>
+                {{ shipmentStatus.actualDelivery | date: 'yyyy-MM-dd
+                HH:mm:ss'
+                }}
+              </td>
+            </tr>
+
+          </table>
 
           <!-- Packege Detail -->
           <nz-page-header class="site-page-header">
-            <nz-avatar nz-page-header-avatar nzSrc="assets/PicTranspo/package.png"></nz-avatar>
+            <nz-avatar [nzShape]="'square'" nz-page-header-avatar nzSrc="assets/PicTranspo/package.png"></nz-avatar>
             <nz-page-header-title style="color: rgb(0, 0, 0); display: block;">Package Details</nz-page-header-title>
-            <nz-page-header-content style="margin-left: 5%; margin-right: 20%;">
-              <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
-                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Count</div>
-                <div nz-col nzFlex="2" *ngIf="shipmentStatus"> {{ shipmentStatus.packageDetails.count }}</div>
-              </div>
-              <div nz-row style=" width: 900px;">
-                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Weight</div>
-                <div nz-col nzFlex="2" *ngIf="shipmentStatus">{{ shipmentStatus.packageDetails.weight.value }}
-                  {{shipmentStatus.packageDetails.weight.unit}}</div>
-              </div>
-              <div nz-row style="background-color:  rgba(128, 128, 128, 0.08); width: 900px;">
-                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Dimenstration</div>
-                <div nz-col nzFlex="2" *ngIf="shipmentStatus">{{ shipmentStatus.packageDetails.dimension.length }} x
-                  {{shipmentStatus.packageDetails.dimension.width}} x {{shipmentStatus.packageDetails.dimension.height}}
-                  {{shipmentStatus.packageDetails.dimension.units}}</div>
-              </div>
-              <div nz-row style=" width: 900px;">
-                <div nz-col nzFlex="3" style="margin-right: -150px; margin-left: 50px;">Packaging</div>
-                <div nz-col nzFlex="2" *ngIf="shipmentStatus">{{ shipmentStatus.packageDetails.packaging }}</div>
-              </div>
-
-            </nz-page-header-content>
           </nz-page-header>
+          <table class="table table-striped ml-2">
+
+            <!-- Count -->
+            <tr>
+              <td class="font-weight-bold">Count</td>
+              <td>{{ shipmentStatus?.packageDetails?.count }}</td>
+            </tr>
+
+            <!-- Weight -->
+            <tr>
+              <td class="font-weight-bold">Weight</td>
+              <td>
+                {{ shipmentStatus?.packageDetails?.weight?.value }} {{
+                shipmentStatus?.packageDetails?.weight?.unit }}
+              </td>
+            </tr>
+
+            <!-- Dimension -->
+            <tr>
+              <td class="font-weight-bold">Dimension</td>
+              <td>
+                {{ shipmentStatus?.packageDetails?.dimension?.length }} x
+                {{ shipmentStatus?.packageDetails?.dimension?.width }} x
+                {{ shipmentStatus?.packageDetails?.dimension?.height }}
+                {{ shipmentStatus?.packageDetails?.dimension?.units }}
+              </td>
+            </tr>
+
+            <!-- Packaging -->
+            <tr>
+              <td class="font-weight-bold">Packaging</td>
+              <td>{{ shipmentStatus?.packageDetails?.packaging }}</td>
+            </tr>
+
+          </table>
 
         </div>
 
-
-
-
-
-
-
-
-
-
       </div>
 
-
-
-      <!-- <nz-switch [(ngModel)]="loading"></nz-switch>
-  <nz-card style="width: 300px;margin-top: 16px" [nzLoading]="loading">
-    <nz-card-meta
-      [nzAvatar]="avatarTemplate"
-      nzTitle="Colis"
-      nzDescription="This is the description"
-    ></nz-card-meta>
-  </nz-card>
-  <ng-template #avatarTemplate>
-      <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
-  </ng-template> -->
     </div>
+  </div>
+</div>
+
+<div class="detail-container">
+  <div *ngIf="showShimmer">
+    <div class="shimmer-section">
+      <div class="shimmer"></div>
+      <div class="shimmer"></div>
+      <div class="shimmer"></div>
+    </div>
+    <div class="shimmer-section">
+      <div class="shimmer"></div>
+      <div class="shimmer"></div>
+      <div class="shimmer"></div>
+    </div>
+    <div class="shimmer-section">
+      <div class="shimmer"></div>
+      <div class="shimmer"></div>
+      <div class="shimmer"></div>
+    </div>
+  </div>
+</div>

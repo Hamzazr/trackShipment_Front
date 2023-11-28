@@ -79,6 +79,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { ColisNotificationComponent } from './components/colis-notification/colis-notification.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 
 
@@ -89,7 +91,6 @@ const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
-
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, RegisterComponent, UsersComponent, UserProfileComponent, ColisComponent,
@@ -113,7 +114,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
-
+    MatProgressSpinnerModule,
+    NzSpinModule,
     NzButtonModule,
     NzLayoutModule,
     NzBreadCrumbModule,
